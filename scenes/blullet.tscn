@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://stwolu23yxun"]
+
+[ext_resource type="Script" path="res://scripts/blullet.gd" id="1_1d0qf"]
+[ext_resource type="Texture2D" uid="uid://bsbmb5wpoj7n4" path="res://assets/bubble_placeholder.png" id="1_nxjv1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dygq8"]
+radius = 12.0
+
+[node name="Blullet" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_1d0qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_nxjv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dygq8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

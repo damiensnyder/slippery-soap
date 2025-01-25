@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc3xexybcvyms"]
+
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_y8pyh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rrnqc"]
+
+[node name="Wall" type="StaticBody2D"]
+script = ExtResource("1_y8pyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_rrnqc")

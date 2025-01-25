@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://j52wuru68873"]
+
+[ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_1ll71"]
+[ext_resource type="PackedScene" uid="uid://2stoc0om2ift" path="res://scenes/bubble.tscn" id="1_n728s"]
+[ext_resource type="PackedScene" uid="uid://dc3xexybcvyms" path="res://scenes/wall.tscn" id="2_iddn8"]
+[ext_resource type="Script" path="res://scripts/debug_movement_settings.gd" id="4_ap0ag"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_1ll71")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Bubble" parent="." instance=ExtResource("1_n728s")]
+position = Vector2(-805, -402)
+
+[node name="Wall" parent="." instance=ExtResource("2_iddn8")]
+position = Vector2(0, 540)
+
+[node name="Wall2" parent="." instance=ExtResource("2_iddn8")]
+position = Vector2(-960, 0)
+rotation = 1.5708
+
+[node name="Wall3" parent="." instance=ExtResource("2_iddn8")]
+position = Vector2(0, -540)
+rotation = 3.14159
+
+[node name="Wall4" parent="." instance=ExtResource("2_iddn8")]
+position = Vector2(960, 0)
+rotation = -1.5708
+
+[node name="SoapSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Debug Movement Settings" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.0784314)
+offset_left = -944.0
+offset_top = -513.0
+offset_right = -904.0
+offset_bottom = -389.0
+theme_override_font_sizes/font_size = 90
+script = ExtResource("4_ap0ag")
+
+[connection signal="timeout" from="SoapSpawnTimer" to="." method="_on_soap_spawn_timer_timeout"]
