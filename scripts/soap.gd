@@ -32,6 +32,7 @@ func life_state():
 
 
 func death_state():
+	print("death wahoo")
 	scale = lerp(scale, target_scale*2, 0.05)
 	if scale.x > target_scale.x * 2 - 0.01: queue_free()
 	modulate.a -= 1.0 / 25

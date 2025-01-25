@@ -92,3 +92,7 @@ func shoot(gun_direction, own_direction, gun_anim, flip):
 	new_blullet.velocity = -gun_direction * bullet_speed
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
 	get_node("/root/GameManager").add_child(new_blullet)
+	
+
+func is_bubble():
+	pass #dw about it

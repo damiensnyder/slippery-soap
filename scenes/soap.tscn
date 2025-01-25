@@ -20,7 +20,7 @@ visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_2nmln")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Soaps"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
