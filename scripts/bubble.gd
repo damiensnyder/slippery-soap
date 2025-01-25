@@ -91,6 +91,7 @@ func shoot(gun_direction, own_direction, gun_anim, flip):
 	new_blullet.velocity = -gun_direction * bullet_speed
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
 	get_node("/root/GameManager").add_child(new_blullet)
+	Globals.emit_signal("shake_screen")
 	
 	angular_velocity += 0.005 * flip * lateral_recoil
 	velocity += gun_direction * lateral_recoil
