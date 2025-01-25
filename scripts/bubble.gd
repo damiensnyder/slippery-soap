@@ -32,41 +32,14 @@ func _physics_process(delta):
 	var rightgun_direction = Vector2(cos(rightgun_rotation), sin(rightgun_rotation))
 	
 	if Input.is_action_just_pressed("shoot left"):
-		angular_velocity += 0.005 * lateral_recoil
-		velocity += leftgun_direction * lateral_recoil
-		
-		left_gun_anim.play()
-		
-		var new_blullet = BLULLET.instantiate()
-		new_blullet.velocity = -leftgun_direction * bullet_speed
-		new_blullet.position = position + 80 * Vector2(direction.y, -direction.x) - 70 * direction
-		get_node("/root/GameManager").add_child(new_blullet)
+		shoot(leftgun_direction, direction, left_gun_anim, 1)
 
 	if Input.is_action_just_pressed("shoot right"):
-		angular_velocity += -0.005 * angular_recoil
-		velocity += rightgun_direction * lateral_recoil
-		
-		right_gun_anim.play()
-		
-		var new_blullet = BLULLET.instantiate()
-		new_blullet.velocity = -rightgun_direction * bullet_speed
-		new_blullet.position = position - 80 * Vector2(direction.y, -direction.x) - 70 * direction
-		get_node("/root/GameManager").add_child(new_blullet)
+		shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
 	if Input.is_action_just_pressed("shoot forward"):
-		velocity += (leftgun_direction + rightgun_direction) * lateral_recoil
-		
-		left_gun_anim.play()
-		right_gun_anim.play()
-		
-		var left_blullet = BLULLET.instantiate()
-		left_blullet.velocity = -leftgun_direction * bullet_speed
-		left_blullet.position = position + 80 * Vector2(direction.y, -direction.x) - 70 * direction
-		get_node("/root/GameManager").add_child(left_blullet)
-		var right_blullet = BLULLET.instantiate()
-		right_blullet.velocity = -rightgun_direction * bullet_speed
-		right_blullet.position = position - 80 * Vector2(direction.y, -direction.x) - 70 * direction
-		get_node("/root/GameManager").add_child(right_blullet)
+		shoot(leftgun_direction, direction, left_gun_anim, 1)
+		shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
 	angular_velocity = clampf(angular_velocity, -0.05, 0.05)
 	velocity += Vector2(0, gravity * 0.004)
@@ -101,6 +74,19 @@ func debug_controls():
 
 	if Input.is_action_just_pressed("angular friction up"): angular_air_friction += 0.2
 	if Input.is_action_just_pressed("angular friction down"): angular_air_friction -= 0.2
+
+
+func shoot(gun_direction, own_direction, gun_anim, flip):
+	angular_velocity += 0.005 * flip * lateral_recoil
+	velocity += gun_direction * lateral_recoil
+	
+	gun_anim.frame = 0
+	gun_anim.play()
+	
+	var new_blullet = BLULLET.instantiate()
+	new_blullet.velocity = -gun_direction * bullet_speed
+	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
+	get_node("/root/GameManager").add_child(new_blullet)
 
 
 func is_bubble():
