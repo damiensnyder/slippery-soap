@@ -5,10 +5,10 @@ const BLULLET = preload("res://scenes/blullet.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var angular_velocity = 0
 
-var lateral_recoil = 5
-var angular_recoil = 16.5
+var lateral_recoil = 10
+var angular_recoil = 12
 var bullet_speed = 10
-var lateral_air_friction = 1
+var lateral_air_friction = 0.6
 var angular_air_friction = 2.6
 
 @onready var left_gun_anim = $LeftGun/LeftGunAnim
@@ -46,7 +46,7 @@ func _physics_process(delta):
 		shoot(leftgun_direction, direction, left_gun_anim, 1)
 		shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
-	angular_velocity = clampf(angular_velocity, -0.05, 0.05)
+	angular_velocity = clampf(angular_velocity, -0.25, 0.25)
 	velocity += Vector2(0, gravity * 0.0025)
 	velocity = lerp(velocity, Vector2(0, 0), 0.01 * velocity.length() * lateral_air_friction)
 	if Input.is_action_pressed("brake"):

@@ -10,7 +10,8 @@ func _physics_process(delta):
 	pass
 
 func _on_soap_spawn_timer_timeout():
-	safe_spawn(SOAP, "Soaps", 400)
+	#safe_spawn(SOAP, "Soaps", 0)
+	pass
 
 
 func _on_enemy_spawn_timer_timeout():

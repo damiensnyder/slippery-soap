@@ -16,6 +16,10 @@ func _physics_process(delta):
 		states.BIRTH: birth_state()
 		states.LIFE: life_state()
 		states.DEATH: death_state()
+		
+	velocity = lerp(velocity, Vector2(0,0), 0.05)
+	var collision = move_and_collide(velocity)
+	if collision: velocity = velocity.bounce(collision.get_normal())
 
 
 func birth_state():
@@ -39,7 +43,7 @@ func death_state():
 
 
 func _on_area_2d_body_entered(body):
-	if not state == states.LIFE: return
+	if state == states.DEATH: return
 	
 	if body.has_method("is_bubble"):
 		state = states.DEATH

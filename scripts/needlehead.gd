@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const SOAP = preload("res://scenes/soap.tscn")
 
 const SPEED = 2
 const ROTATION_SPEED = 4
@@ -22,4 +23,12 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player Projectiles"):
+		for i in 3:
+			var new_soap = SOAP.instantiate()
+			new_soap.position = position
+			new_soap.velocity = Vector2(
+				randf_range(-10,10),
+				randf_range(-10,10)
+			)
+			get_node("/root/GameManager").add_child(new_soap)
 		queue_free()
