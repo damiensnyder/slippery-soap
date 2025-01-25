@@ -149,6 +149,8 @@ position = Vector2(-60, -120)
 rotation = 1.5708
 
 [node name="LeftGunAnim" type="AnimatedSprite2D" parent="LeftGun"]
+position = Vector2(-10, -80)
+rotation = -0.436332
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_0xogp")
 frame = 16
@@ -161,6 +163,8 @@ position = Vector2(-60, 120)
 rotation = 1.5708
 
 [node name="RightGunAnim" type="AnimatedSprite2D" parent="RightGun"]
+position = Vector2(10, -80)
+rotation = 0.436332
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_0xogp")
 frame = 16
