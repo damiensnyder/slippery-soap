@@ -49,6 +49,8 @@ func _physics_process(delta):
 	angular_velocity = clampf(angular_velocity, -0.05, 0.05)
 	velocity += Vector2(0, gravity * 0.0025)
 	velocity = lerp(velocity, Vector2(0, 0), 0.01 * velocity.length() * lateral_air_friction)
+	if Input.is_action_pressed("brake"):
+		velocity = lerp(velocity, Vector2(0, 0), 0.1 * velocity.length() * lateral_air_friction)
 	angular_velocity = lerp(angular_velocity, 0.0, 0.01 * angular_air_friction)
 	
 	rotation += angular_velocity
@@ -91,11 +93,10 @@ func shoot(gun_direction, own_direction, gun_anim, flip):
 	get_node("/root/GameManager").add_child(new_blullet)
 	
 	angular_velocity += 0.005 * flip * lateral_recoil
+	velocity += gun_direction * lateral_recoil
 	if Input.is_action_pressed("stop lateral recoil"):
 		# double the angular velocity change
 		angular_velocity += 0.005 * flip * lateral_recoil
-	else:	
-		velocity += gun_direction * lateral_recoil
 	
 
 func is_bubble():
