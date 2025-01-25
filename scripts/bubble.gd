@@ -95,7 +95,7 @@ func shoot(gun_direction, own_direction, gun_anim, flip):
 	
 	angular_velocity += 0.005 * flip * angular_recoil
 	velocity += gun_direction * lateral_recoil
-	if Input.is_action_pressed("stop lateral recoil"):
+	if Input.is_action_pressed("brake"):
 		# double the angular velocity change
 		angular_velocity += 0.005 * flip * angular_recoil
 	
