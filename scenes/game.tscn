@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://2stoc0om2ift" path="res://scenes/bubble.tscn" id="1_n728s"]
 [ext_resource type="PackedScene" uid="uid://dc3xexybcvyms" path="res://scenes/wall.tscn" id="2_iddn8"]
 [ext_resource type="Script" path="res://scripts/debug_movement_settings.gd" id="4_ap0ag"]
-[ext_resource type="PackedScene" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
+[ext_resource type="PackedScene" uid="uid://dqi4isfy80gdo" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_1ll71")
