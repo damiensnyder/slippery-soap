@@ -4,7 +4,7 @@ const SOAP = preload("res://scenes/soap.tscn")
 const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 
 func _ready():
-	pass
+	Globals.state = Globals.states.LAUNCH
 
 func _physics_process(delta):
 	pass
@@ -16,6 +16,7 @@ func _on_soap_spawn_timer_timeout():
 
 func _on_enemy_spawn_timer_timeout():
 	safe_spawn(NEEDLEHEAD, "Enemies", 800)
+	pass
 
 func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_player : float):
 	var new_node = scene.instantiate()

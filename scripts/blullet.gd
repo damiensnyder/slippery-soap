@@ -21,9 +21,9 @@ func inair_state():
 
 func posthit_state():
 	move_and_collide(velocity)
-	scale = lerp(scale, Vector2(2,2), 0.2)
+	scale = lerp(scale, Vector2(2,2), 0.4)
 	velocity = lerp(velocity, Vector2(0,0), 0.05)
-	modulate.a = lerp(modulate.a, 0.0, 0.2)
+	modulate.a = lerp(modulate.a, 0.0, 0.4)
 	if modulate.a < 0.01: queue_free()
 
 

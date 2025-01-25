@@ -21,6 +21,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("ui_left"):
 		apply_shake()
+	
+	position = lerp(position, Globals.player_position, 0.05)
 
 func _get_random_offset():
 	var rand_move = Vector2(
