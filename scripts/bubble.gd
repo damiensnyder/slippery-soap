@@ -53,17 +53,6 @@ func _physics_process(delta):
 		new_blullet.position = position - rightgun_direction*150
 		get_node("/root/GameManager").add_child(new_blullet)
 	
-	if Input.is_action_just_pressed("shoot left"):
-		angular_velocity += 0.005 * lateral_recoil
-		velocity += leftgun_direction * lateral_recoil
-		
-		left_gun_anim.play()
-		
-		var new_blullet = BLULLET.instantiate()
-		new_blullet.velocity = -leftgun_direction * bullet_speed
-		new_blullet.position = position - leftgun_direction*150
-		get_node("/root/GameManager").add_child(new_blullet)
-	
 	if Input.is_action_just_pressed("shoot forward"):
 		velocity += (leftgun_direction + rightgun_direction) * lateral_recoil
 		
