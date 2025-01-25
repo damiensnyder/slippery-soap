@@ -11,24 +11,25 @@ point_count = 2
 curve = SubResource("Curve_rl3fw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o522n"]
-lifetime_randomness = 0.51
+lifetime_randomness = 0.65
 particle_flag_disable_z = true
 spread = 180.0
-initial_velocity_min = 661.96
-initial_velocity_max = 802.82
+initial_velocity_min = 845.06
+initial_velocity_max = 908.45
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = 395.5
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 700, 0)
 scale_min = 0.25
 scale_max = 1.25
 scale_curve = SubResource("CurveTexture_7exv2")
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
+emitting = false
 amount = 11
 process_material = SubResource("ParticleProcessMaterial_o522n")
 texture = ExtResource("1_kr50x")
-lifetime = 1.5
+one_shot = true
 explosiveness = 1.0
 local_coords = true
 script = ExtResource("2_ye5um")
