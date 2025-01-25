@@ -91,16 +91,30 @@ func debug_controls():
 	if Input.is_action_just_pressed("angular friction down"): angular_air_friction -= 0.2
 
 
-func shoot(gun_direction, own_direction, gun_anim, flip):
+func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	gun_anim.frame = 0
 	gun_anim.play()
 	
 	var new_blullet = BLULLET.instantiate()
-	new_blullet.velocity = -gun_direction * bullet_speed
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
+	
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var best_angle = 100
+	var average_gun_position = position - 30 * own_direction
+	for enemy in enemies:
+		var angle_to_enemy = average_gun_position.angle_to_point(enemy.position) - rotation
+		while angle_to_enemy > PI:
+			angle_to_enemy -= TAU
+		while angle_to_enemy < -PI:
+			angle_to_enemy += TAU
+		if abs(angle_to_enemy) < abs(best_angle - rotation) and enemy.position.length() > 0 and not enemy.is_queued_for_deletion():
+			best_angle = angle_to_enemy
+	new_blullet.velocity = -gun_direction * bullet_speed
+	if abs(PI - abs(best_angle)) < PI / 8:
+		new_blullet.velocity = gun_direction.rotated(best_angle) * bullet_speed
+	
 	get_node("/root/GameManager").add_child(new_blullet)
 	Globals.emit_signal("shake_screen")
-	
 	angular_velocity += 0.005 * flip * angular_recoil
 	velocity += gun_direction * lateral_recoil
 	if Input.is_action_pressed("brake"):
