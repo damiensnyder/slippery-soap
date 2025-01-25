@@ -6,13 +6,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var angular_velocity = 0
 
 var lateral_recoil = 5
-var angular_recoil = 10
+var angular_recoil = 16.5
 var bullet_speed = 10
 var lateral_air_friction = 1
-var angular_air_friction = 2
+var angular_air_friction = 2.6
 
 @onready var left_gun_anim = $LeftGun/LeftGunAnim
 @onready var right_gun_anim = $RightGun/RightGunAnim
+@onready var left_timer = $LeftTimer
+@onready var right_timer = $RightTimer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +24,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
 	debug_controls()
 	
 	var direction = Vector2(cos(rotation), sin(rotation))
@@ -31,13 +32,17 @@ func _physics_process(delta):
 	var leftgun_direction = Vector2(cos(leftgun_rotation), sin(leftgun_rotation))
 	var rightgun_direction = Vector2(cos(rightgun_rotation), sin(rightgun_rotation))
 	
-	if Input.is_action_just_pressed("shoot left"):
+	if Input.is_action_pressed("shoot left") and left_timer.is_stopped():
+		left_timer.start()
 		shoot(leftgun_direction, direction, left_gun_anim, 1)
 
-	if Input.is_action_just_pressed("shoot right"):
+	if Input.is_action_pressed("shoot right") and right_timer.is_stopped():
+		right_timer.start()
 		shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
-	if Input.is_action_just_pressed("shoot forward"):
+	if Input.is_action_pressed("shoot forward") and left_timer.is_stopped() and right_timer.is_stopped():
+		left_timer.start()
+		right_timer.start()
 		shoot(leftgun_direction, direction, left_gun_anim, 1)
 		shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
@@ -87,7 +92,3 @@ func shoot(gun_direction, own_direction, gun_anim, flip):
 	new_blullet.velocity = -gun_direction * bullet_speed
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
 	get_node("/root/GameManager").add_child(new_blullet)
-
-
-func is_bubble():
-	pass #im a bubble wahoo

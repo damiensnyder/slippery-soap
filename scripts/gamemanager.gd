@@ -31,3 +31,5 @@ func _on_soap_spawn_timer_timeout():
 		
 	add_child(new_soap)
 	
+func _on_right_timer_timeout() -> void:
+	pass # Replace with function body.
