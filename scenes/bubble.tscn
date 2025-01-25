@@ -174,11 +174,11 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightGun"]
 
 [node name="LeftTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 one_shot = true
 autostart = true
 
 [node name="RightTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 one_shot = true
 autostart = true
