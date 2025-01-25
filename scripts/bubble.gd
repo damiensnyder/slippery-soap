@@ -51,7 +51,10 @@ func _physics_process(delta):
 	velocity = lerp(velocity, Vector2(0, 0), 0.01 * velocity.length() * lateral_air_friction)
 	if Input.is_action_pressed("brake"):
 		velocity = lerp(velocity, Vector2(0, 0), 0.1 * velocity.length() * lateral_air_friction)
-	angular_velocity = lerp(angular_velocity, 0.0, 0.01 * angular_air_friction)
+	if Input.is_action_pressed("shoot left") or Input.is_action_pressed("shoot right"):
+		angular_velocity = lerp(angular_velocity, 0.0, 0.0075 * angular_air_friction)
+	else:
+		angular_velocity = lerp(angular_velocity, 0.0, 0.02 * angular_air_friction)
 	
 	rotation += angular_velocity
 	rotation = fmod(rotation + TAU, TAU)
