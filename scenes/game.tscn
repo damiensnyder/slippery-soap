@@ -225,6 +225,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Debug Movement Settings" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.0784314)
 offset_left = -944.0
 offset_top = -513.0
