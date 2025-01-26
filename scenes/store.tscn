@@ -1,9 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://di07krsocukfl"]
+[gd_scene load_steps=16 format=3 uid="uid://di07krsocukfl"]
 
 [ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/store.png" id="1_rfmim"]
 [ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
 [ext_resource type="Texture2D" uid="uid://bbjy1gfg2uwsb" path="res://assets/store_gun.png" id="3_0bbg6"]
+[ext_resource type="Texture2D" uid="uid://ct0a52vtloxhm" path="res://assets/bubble_guy.png" id="3_xw6xs"]
 [ext_resource type="Texture2D" uid="uid://bmwvgy6ybuai2" path="res://assets/store_shield.png" id="4_ta8tn"]
+[ext_resource type="Texture2D" uid="uid://rqypxlvxtnpa" path="res://assets/store_ammo.png" id="6_nbk2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c1xv"]
+atlas = ExtResource("3_xw6xs")
+region = Rect2(0, 0, 811, 618)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5br5p"]
+atlas = ExtResource("3_xw6xs")
+region = Rect2(811, 0, 811, 618)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5feak"]
+atlas = ExtResource("3_xw6xs")
+region = Rect2(1622, 0, 811, 618)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k6n6"]
+atlas = ExtResource("3_xw6xs")
+region = Rect2(2433, 0, 811, 618)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwgoa"]
+atlas = ExtResource("3_xw6xs")
+region = Rect2(3244, 0, 811, 618)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oiqal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c1xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5br5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5feak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k6n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwgoa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77hbx"]
 size = Vector2(252, 172)
@@ -11,12 +56,22 @@ size = Vector2(252, 172)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpxyl"]
 size = Vector2(196, 144)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sls0t"]
+size = Vector2(160, 223)
+
 [node name="Store" type="Node2D"]
 script = ExtResource("1_rwmah")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("1_rfmim")
+
+[node name="Shopkeep" type="AnimatedSprite2D" parent="."]
+position = Vector2(662, 418)
+scale = Vector2(0.907767, 0.907767)
+sprite_frames = SubResource("SpriteFrames_oiqal")
+frame = 3
+frame_progress = 0.58816
 
 [node name="Gun" type="Sprite2D" parent="."]
 position = Vector2(210, 248)
@@ -29,18 +84,28 @@ position = Vector2(2, -3)
 shape = SubResource("RectangleShape2D_77hbx")
 
 [node name="Shield" type="Sprite2D" parent="."]
-position = Vector2(1120, 301)
+position = Vector2(685, 115)
 texture = ExtResource("4_ta8tn")
 
 [node name="ShieldArea2D" type="Area2D" parent="Shield"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/ShieldArea2D"]
-position = Vector2(6, -14)
+position = Vector2(-7, -12)
 shape = SubResource("RectangleShape2D_bpxyl")
 
-[node name="Shopkeep" type="AnimatedSprite2D" parent="."]
+[node name="Ammo" type="Sprite2D" parent="."]
+position = Vector2(1122, 257)
+texture = ExtResource("6_nbk2x")
+
+[node name="AmmoArea2D" type="Area2D" parent="Ammo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ammo/AmmoArea2D"]
+position = Vector2(-3, -16.5)
+shape = SubResource("RectangleShape2D_sls0t")
 
 [connection signal="mouse_entered" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Ammo/AmmoArea2D" to="." method="_on_ammo_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Ammo/AmmoArea2D" to="." method="_on_ammo_area_2d_mouse_exited"]
