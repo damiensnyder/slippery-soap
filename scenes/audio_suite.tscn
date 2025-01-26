@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwdb0j0dq3u21"]
+[gd_scene load_steps=8 format=3 uid="uid://dhfpt03g0wjv3"]
 
 [ext_resource type="Script" path="res://scripts/audio_suite.gd" id="1_001av"]
-[ext_resource type="AudioStream" uid="uid://do3jrqn2ueqm7" path="res://assets/ahhh1.wav" id="1_3b7h6"]
-[ext_resource type="AudioStream" uid="uid://di555lre42dhn" path="res://assets/ow1.wav" id="2_4h0c3"]
-[ext_resource type="AudioStream" uid="uid://cwdmkfodlm1fu" path="res://assets/pop.wav" id="4_641k5"]
-[ext_resource type="AudioStream" uid="uid://bwiot4jaf7os5" path="res://assets/pop2.wav" id="5_07x6k"]
-[ext_resource type="AudioStream" uid="uid://2j37l22unhsp" path="res://assets/pshew.wav" id="6_lcb1x"]
-[ext_resource type="AudioStream" uid="uid://cnp1a7m35i7tj" path="res://assets/ding.wav" id="7_3jp47"]
+[ext_resource type="AudioStream" uid="uid://c1nkgfvniej5k" path="res://assets/ahhh1.wav" id="1_3b7h6"]
+[ext_resource type="AudioStream" uid="uid://cr6hf5eo41qk" path="res://assets/ow1.wav" id="2_4h0c3"]
+[ext_resource type="AudioStream" uid="uid://d000ws70gqeuv" path="res://assets/pop.wav" id="4_641k5"]
+[ext_resource type="AudioStream" uid="uid://beycsjdh08vwu" path="res://assets/pop2.wav" id="5_07x6k"]
+[ext_resource type="AudioStream" uid="uid://630l3mp7b4f6" path="res://assets/pshew.wav" id="6_lcb1x"]
+[ext_resource type="AudioStream" uid="uid://cgv20y7js3ihb" path="res://assets/ding.wav" id="7_3jp47"]
 
 [node name="AudioSuite" type="Node2D"]
 script = ExtResource("1_001av")
@@ -34,3 +34,5 @@ stream = ExtResource("7_3jp47")
 max_polyphony = 3
 
 [node name="AmmoPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ChaChingPlayer" type="AudioStreamPlayer" parent="."]
