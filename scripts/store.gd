@@ -52,21 +52,22 @@ func _process(delta: float) -> void:
 		match selected_item:
 			"": pass
 			"Gun": 
-				description.text = str(item_text[0])
-				price_label.text = "Price: " + str(item_prices["_Gun"][0])
-				selected_price = item_prices["_Gun"][0]
-				selected_sprite.texture = gun
+				if Globals.gun_upgrade_lvl < 1:
+					description.text = str(item_text[0])
+					price_label.text = "Price: " + str(item_prices["_Gun"][0])
+					selected_price = item_prices["_Gun"][0]
+					selected_sprite.texture = gun
 			"Shield":
 				if Globals.shield_upgrade_lvl < item_prices["_Shield"].size():
 					description.text = item_text[1]
 					price_label.text = "Price: " + str(item_prices["_Shield"][Globals.shield_upgrade_lvl])
-					selected_price = item_prices["_Shield"][0]
+					selected_price = item_prices["_Shield"][Globals.shield_upgrade_lvl]
 					selected_sprite.texture = shield
 			"Ammo":
 				if Globals.ammo_upgrade_lvl < item_prices["_Ammo"].size():
 					description.text = item_text[2]
 					price_label.text = "Price: " + str(item_prices["_Ammo"][Globals.ammo_upgrade_lvl])
-					selected_price = item_prices["_Ammo"][0]
+					selected_price = item_prices["_Ammo"][Globals.ammo_upgrade_lvl]
 					selected_sprite.texture = ammo
 		if selected_buy:
 			if Globals.soap >= selected_price and selected_price != 0:
@@ -79,6 +80,11 @@ func _process(delta: float) -> void:
 						if Globals.shield_upgrade_lvl + 1 <= item_prices["_Shield"].size():
 							#if there's another upgrade
 							Globals.shield_upgrade_lvl += 1
+					gun:
+						if Globals.gun_upgrade_lvl < 1:
+							print("gun")
+							#if there's another upgrade
+							Globals.gun_upgrade_lvl += 1
 				Globals.soap -= selected_price
 				selected_sprite.texture = null
 				selected_item = ""
