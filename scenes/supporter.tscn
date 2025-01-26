@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccuygkrhnyhg5"]
+
+[ext_resource type="Texture2D" uid="uid://djlag6v45wlm3" path="res://assets/supporter.png" id="1_6nl1q"]
+[ext_resource type="Script" path="res://scripts/supporter.gd" id="1_vj8ai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfmvt"]
+size = Vector2(128, 128)
+
+[node name="Supporter" type="CharacterBody2D" groups=["Supporters"]]
+z_index = -1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vj8ai")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6nl1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -65)
+shape = SubResource("RectangleShape2D_jfmvt")
+
+[node name="ExtraAmmoTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ExtraAmmoTimer" to="." method="_on_extra_ammo_timer_timeout"]

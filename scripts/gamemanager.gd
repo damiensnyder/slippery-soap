@@ -4,22 +4,26 @@ const SOAP = preload("res://scenes/soap.tscn")
 const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 const BUBBLE = preload("res://scenes/bubble.tscn")
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
+const SUPPORTER = preload("res://scenes/supporter.tscn")
 
 @onready var launch_seqeunce = $LaunchSeqeunce
 @onready var store = $Store
 @onready var ui = $UI
 @onready var camera = $Camera2D
+@onready var curtain = $Curtain
 @onready var once = true #fuck it sorry
 @onready var poopy = false #sorry again, this is for instore()
 
 func _ready():
 	if Globals.first_round == true:
-		launch_seqeunce.play()
+		launch_seqeunce.frame = 0
 		Globals.first_round = false
-		Globals.state = Globals.states.LAUNCH
+		curtain.modulate.a = 1
+		Globals.state = Globals.states.PRELAUNCH
 	
 func _physics_process(delta):
 	match Globals.state:
+		Globals.states.PRELAUNCH: prelaunch_state()
 		Globals.states.LAUNCH: launch_state()
 		Globals.states.GAMEPLAY: pass
 		Globals.states.STORE: in_store()
@@ -42,14 +46,25 @@ func in_store():
 		store.in_ = false
 		poopy = true
 	if store.fade_index <= 0 and poopy == true:
-			Globals.state = Globals.states.LAUNCH
-			launch_seqeunce.play()
+			Globals.state = Globals.states.PRELAUNCH
+			launch_seqeunce.frame = 0
+			#launch_seqeunce.play()
 			ui.visible = true
 	pass
 
 func transition_to_store():
 	#bubble pop and shit
 	Globals.state = Globals.states.STORE
+
+
+func prelaunch_state():
+	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
+	if curtain.modulate.a < 0.01:
+		curtain.modulate.a = 0
+	if Input.is_action_just_pressed("launch"):
+		Globals.state = Globals.states.LAUNCH
+		curtain.modulate.a = 0
+		launch_seqeunce.play()
 
 
 func launch_state():
@@ -84,6 +99,12 @@ func _on_dodge_blade_spawn_timer_timeout():
 	if Globals.state == Globals.states.STORE: return
 	safe_spawn(DODGE_BLADE, "DodgeBlades", 2000)
 
+
+func _on_supporter_spawn_timer_timeout():
+	if Globals.state == Globals.states.STORE: return
+	safe_spawn(SUPPORTER, "Supporters", 2000)
+	
+	
 func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_player : float):
 	var new_node = scene.instantiate()
 	
@@ -95,6 +116,7 @@ func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_playe
 		
 		new_node.position = Globals.player_position + Vector2(randf_range(-1000, 1000), randf_range(-3000, 600))
 		if new_node.position.distance_to(Globals.player_position) < min_spawn_distance_to_player: continue
+		if new_node.position.y < -10000: continue
 		
 		var too_close = false # set to true if we find something too close
 		var group_members = get_tree().get_nodes_in_group(group)

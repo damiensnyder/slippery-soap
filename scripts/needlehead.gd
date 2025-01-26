@@ -30,7 +30,12 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player Projectiles") and body.state == body.states.INAIR:
 		AudioSuite.pshew_player.play()
 		body.state = body.states.POSTHIT
-		for i in 3:
+		var amt
+		match Globals.gun_upgrade_lvl:
+			0: amt = 3
+			1: amt = 5
+			
+		for i in amt:
 			var new_soap = SOAP.instantiate()
 			new_soap.position = position
 			new_soap.velocity = Vector2(

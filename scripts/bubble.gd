@@ -19,9 +19,9 @@ var shields = 0
 @onready var right_timer = $RightTimer
 @onready var floating_sprite: AnimatedSprite2D = $Sprite2D
 @onready var popped_sprite: Sprite2D = $popped
-@onready var shield_sprite = $RightGun
 @onready var left_gun = $LeftGun
 @onready var right_gun = $RightGun
+@onready var shield_sprite = $Shield
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +29,16 @@ func _ready():
 	floating_sprite.visible = true
 	popped_sprite.visible = false
 	shields = Globals.shield_upgrade_lvl
+	
+	if Globals.gun_upgrade_lvl > 0:
+		left_gun_anim.animation = "upgraded"
+		right_gun_anim.animation = "upgraded"
+		left_gun_anim.scale = Vector2(1.25,1.25)
+		right_gun_anim.scale = Vector2(1.25,1.25)
+		left_gun_anim.rotation -= PI/4 + PI/8
+		right_gun_anim.rotation += PI/4 + PI/8
+		left_gun_anim.position.y += 225
+		right_gun_anim.position.y += 225
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -43,13 +53,16 @@ func _physics_process(delta):
 		velocity += Vector2(0, 0.2)
 		var collision = move_and_collide(velocity * 2)
 		Globals.player_position = position
-		if collision and collision.get_collider().has_method("is_wall"):
+		if position.y > 700 or collision and (collision.get_collider().is_in_group("Walls") or collision.get_collider().to_string().contains("Top")): #idk why groups alone don't work here
 			AudioSuite.scream_player.stop()
 			AudioSuite.ouch_player.play()
-			velocity = velocity.bounce(collision.get_normal())
+			if collision: velocity = velocity.bounce(collision.get_normal())
 			Globals.ammo = Globals.max_ammo
 			Globals.state = Globals.states.STORE #STORE
 			get_tree().reload_current_scene()
+	
+	shield_sprite.modulate.a = 0.2 * shields
+	if Globals.ammo <= 0: shields = 0
 	
 	var direction = Vector2(cos(rotation), sin(rotation))
 	var leftgun_rotation = atan2(direction.y, direction.x) # + PI/4
@@ -132,7 +145,10 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	var new_blullet = BLULLET.instantiate()
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
 	
-	AudioSuite.gunshot_player.play()
+	if Globals.gun_upgrade_lvl == 0:
+		AudioSuite.gunshot_player.play()
+	elif Globals.gun_upgrade_lvl >= 1:
+		AudioSuite.loud_gunshot_player.play()
 	
 	var enemies = get_tree().get_nodes_in_group("Enemies") + get_tree().get_nodes_in_group("Dodge Blades")
 	var best_angle = 100

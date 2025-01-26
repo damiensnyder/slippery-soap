@@ -26,7 +26,12 @@ func _physics_process(delta):
 func _on_blade_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player Projectiles") and body.state == body.states.INAIR:
 		body.state = body.states.POSTHIT
-		for i in 3:
+		var amt
+		match Globals.gun_upgrade_lvl:
+			0: amt = 3
+			1: amt = 5
+			
+		for i in amt:
 			var new_soap = SOAP.instantiate()
 			new_soap.position = position
 			new_soap.velocity = Vector2(

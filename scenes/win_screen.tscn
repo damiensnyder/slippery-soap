@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbv3jmkug2dk4"]
+
+[ext_resource type="Texture2D" uid="uid://bqbhxr3aicm8m" path="res://assets/win_screen_placeholder.png" id="1_1asrh"]
+[ext_resource type="Texture2D" uid="uid://bwypn7r4ptlu0" path="res://assets/white_square.png" id="2_xnh64"]
+[ext_resource type="Script" path="res://scripts/win_screen_curtain.gd" id="3_npmqy"]
+
+[node name="WinScreenPlaceholder" type="Sprite2D"]
+texture = ExtResource("1_1asrh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WinScreenCurtain" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
+texture = ExtResource("2_xnh64")
+script = ExtResource("3_npmqy")
