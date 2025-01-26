@@ -59,19 +59,19 @@ func _process(delta: float) -> void:
 			"Shield":
 				description.text = item_text[1]
 				price_label.text = "Price: " + str(item_prices["_Shield"][0])
-				selected_price = item_prices["_Gun"][0]
+				selected_price = item_prices["_Shield"][0]
 				selected_sprite.texture = shield
 			"Ammo": 
 				description.text = item_text[2]
 				price_label.text = "Price: " + str(item_prices["_Ammo"][0])
-				selected_price = item_prices["_Gun"][0]
+				selected_price = item_prices["_Ammo"][0]
 				selected_sprite.texture = ammo
-			"Buy":
-				if Globals.soap >= selected_price and selected_price != 0:
-					print("BUY")
-					Globals.soap -= selected_price
-					selected_item = ""
-					selected_price = 0
+		if selected_buy:
+			if Globals.soap >= selected_price and selected_price != 0:
+				print("BUY")
+				Globals.soap -= selected_price
+				selected_item = ""
+				selected_price = 0
 
 #fuck it im tired im making 6 of these
 func _on_area_2d_mouse_entered() -> void: #gun
@@ -81,7 +81,6 @@ func _on_area_2d_mouse_entered() -> void: #gun
 func _on_area_2d_mouse_exited() -> void: #gun
 	#mouse_in_gun = false
 	selected_item = ""
-	selected_price = 0
 
 func _on_shield_area_2d_mouse_entered() -> void:
 	#mouse_in_shield = true
@@ -90,7 +89,6 @@ func _on_shield_area_2d_mouse_entered() -> void:
 func _on_shield_area_2d_mouse_exited() -> void:
 	#mouse_in_shield = false
 	selected_item = ""
-	selected_price = 0
 
 func _on_ammo_area_2d_mouse_entered() -> void:
 	#mouse_in_ammo = true
@@ -99,7 +97,6 @@ func _on_ammo_area_2d_mouse_entered() -> void:
 func _on_ammo_area_2d_mouse_exited() -> void:
 	#mouse_in_ammo = false
 	selected_item = ""
-	selected_price = 0
 
 func _on_buy_mouse_entered() -> void:
 	selected_buy = true

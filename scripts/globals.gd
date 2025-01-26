@@ -8,7 +8,7 @@ var state
 var player_position = Vector2(0,0)
 var max_ammo = 26
 var ammo = max_ammo
-var soap = 0
+var soap = 300
 var first_round = true
 
 var recoil = 5
