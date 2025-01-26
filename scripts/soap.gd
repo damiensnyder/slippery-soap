@@ -40,6 +40,7 @@ func _on_area_2d_body_entered(body):
 	if state == states.DEATH: return
 	
 	if body.has_method("is_bubble"):
+		AudioSuite.ding_player.play()
 		state = states.DEATH
 
 
