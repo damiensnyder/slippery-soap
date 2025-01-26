@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://l3wda5jdhj5p" path="res://assets/launch_sheet.png" id="7_ytvbr"]
 [ext_resource type="PackedScene" uid="uid://clsekfb1qekye" path="res://scenes/ui.tscn" id="8_nuht8"]
 [ext_resource type="PackedScene" uid="uid://bg73d0smfld5j" path="res://scenes/store.tscn" id="9_0d5ux"]
+[ext_resource type="PackedScene" uid="uid://dpbokwsp118f0" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
+[ext_resource type="Texture2D" uid="uid://bq80orxxfim7r" path="res://assets/background.png" id="6_uoxb7"]
+[ext_resource type="Texture2D" uid="uid://dfegya3fh6hbs" path="res://assets/background_upper.jpg" id="7_jy0yt"]
+[ext_resource type="Texture2D" uid="uid://c33nmvg3tpge0" path="res://assets/launch_sheet.png" id="7_ytvbr"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="8_nuht8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d77et"]
 atlas = ExtResource("7_ytvbr")

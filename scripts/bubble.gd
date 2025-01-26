@@ -10,19 +10,33 @@ var angular_recoil = 12
 var bullet_speed = 10
 var lateral_air_friction = 0.6
 var angular_air_friction = 2.6
+var is_popped = false
 
 @onready var left_gun_anim = $LeftGun/LeftGunAnim
 @onready var right_gun_anim = $RightGun/RightGunAnim
 @onready var left_timer = $LeftTimer
 @onready var right_timer = $RightTimer
+@onready var floating_sprite: AnimatedSprite2D = $Sprite2D
+@onready var popped_sprite: Sprite2D = $popped
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity = Vector2(0, 50)
+	floating_sprite.visible = true
+	popped_sprite.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	debug_controls()
+	
+	if is_popped:
+		velocity += Vector2(0, 0.15)
+		var collision = move_and_collide(velocity)
+		Globals.player_position = position
+		if collision and collision.get_collider().has_method("is_wall"):
+			velocity = velocity.bounce(collision.get_normal())
+			Globals.ammo = Globals.max_ammo
+			get_tree().reload_current_scene()
 	
 	var direction = Vector2(cos(rotation), sin(rotation))
 	var leftgun_rotation = atan2(direction.y, direction.x) # + PI/4
@@ -129,10 +143,11 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Dodge Blades") or body.is_in_group("Enemies"):
-		Globals.ammo = Globals.max_ammo
-		Globals.state = Globals.states.STORE
-		get_tree().reload_current_scene()
-		print(Globals.state)
+		Globals.ammo = 0
+		floating_sprite.visible = false
+		popped_sprite.visible = true
+		is_popped = true
+
 
 func is_bubble():
 	pass #dw about it
