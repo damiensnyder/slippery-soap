@@ -19,7 +19,7 @@ var angular_air_friction = 2.6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	velocity = Vector2(0, 50)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
