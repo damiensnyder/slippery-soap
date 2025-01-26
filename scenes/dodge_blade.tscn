@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://15pfpi0dobht"]
 
-[ext_resource type="Texture2D" uid="uid://g0l7mnvjhu23" path="res://assets/dodge-blade.png" id="1_2c0ho"]
-[ext_resource type="Script" path="res://dodge_blade.gd" id="1_8ow4r"]
+[ext_resource type="Texture2D" uid="uid://c2e5ahkbth5i4" path="res://assets/dodge-blade.png" id="1_2c0ho"]
+[ext_resource type="Script" path="res://scripts/dodge_blade.gd" id="1_8ow4r"]
 
 [node name="DodgeBlade" type="CharacterBody2D" groups=["Dodge Blades"]]
 scale = Vector2(0.6, 0.6)

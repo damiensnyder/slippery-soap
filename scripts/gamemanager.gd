@@ -70,6 +70,8 @@ func _on_soap_spawn_timer_timeout():
 	pass
 
 func _on_enemy_spawn_timer_timeout():
+	if Globals.state == Globals.states.STORE: return
+	
 	if Globals.ammo > 0:
 		safe_spawn(NEEDLEHEAD, "Enemies", 2000)
 	else:
@@ -79,6 +81,7 @@ func _on_enemy_spawn_timer_timeout():
 	pass
 
 func _on_dodge_blade_spawn_timer_timeout():
+	if Globals.state == Globals.states.STORE: return
 	safe_spawn(DODGE_BLADE, "DodgeBlades", 2000)
 
 func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_player : float):

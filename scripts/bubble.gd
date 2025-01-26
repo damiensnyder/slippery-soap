@@ -38,9 +38,11 @@ func _physics_process(delta):
 		right_gun.rotation += 0.05
 		
 		velocity += Vector2(0, 0.2)
-		var collision = move_and_collide(velocity)
+		var collision = move_and_collide(velocity * 2)
 		Globals.player_position = position
 		if collision and collision.get_collider().has_method("is_wall"):
+			AudioSuite.scream_player.stop()
+			AudioSuite.ouch_player.play()
 			velocity = velocity.bounce(collision.get_normal())
 			Globals.ammo = Globals.max_ammo
 			Globals.state = Globals.states.STORE #STORE
@@ -89,10 +91,12 @@ func _physics_process(delta):
 		
 	rotation += angular_velocity
 	rotation = fmod(rotation + TAU, TAU)
-	var collision = move_and_collide(velocity)
 	
-	if collision and collision.get_collider().has_method("is_wall"):
-		velocity = velocity.bounce(collision.get_normal())
+	if not is_popped:
+		var collision = move_and_collide(velocity)
+		
+		if collision and collision.get_collider().has_method("is_wall"):
+			velocity = velocity.bounce(collision.get_normal())
 	
 	Globals.player_position = position
 	
@@ -125,6 +129,8 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	var new_blullet = BLULLET.instantiate()
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction
 	
+	AudioSuite.gunshot_player.play()
+	
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	var best_angle = 100
 	var average_gun_position = position - 30 * own_direction
@@ -155,6 +161,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		floating_sprite.visible = false
 		popped_sprite.visible = true
 		is_popped = true
+		if not AudioSuite.scream_player.playing:
+			AudioSuite.scream_player.play()
+			AudioSuite.pop_player.play()
 
 
 func is_bubble():
