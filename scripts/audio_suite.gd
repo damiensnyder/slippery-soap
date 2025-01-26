@@ -7,3 +7,4 @@ extends Node2D
 @onready var pshew_player = $PshewPlayer
 @onready var ding_player = $DingPlayer
 @onready var ammo_player = $AmmoPlayer
+@onready var chaching_player = $ChaChingPlayer

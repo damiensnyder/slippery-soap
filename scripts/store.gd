@@ -100,6 +100,7 @@ func _process(delta: float) -> void:
 					buy_sprite.visible = true
 		if selected_buy:
 			if Globals.soap >= selected_price and selected_price != 0:
+				AudioSuite.chaching_player.play()
 				match selected_sprite.texture: #upgrades
 					ammo:
 						if Globals.ammo_upgrade_lvl + 1 <= item_prices["_Ammo"].size():
