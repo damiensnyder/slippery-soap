@@ -2,12 +2,31 @@ extends Node2D
 
 const SOAP = preload("res://scenes/soap.tscn")
 const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
+const BUBBLE = preload("res://scenes/bubble.tscn")
+
+@onready var launch_seqeunce = $LaunchSeqeunce
 
 func _ready():
+	#Globals.player_position = Vector2(0,300)
+	launch_seqeunce.play()
 	Globals.state = Globals.states.LAUNCH
+	
 
 func _physics_process(delta):
-	pass
+	match Globals.state:
+		Globals.states.LAUNCH: launch_state()
+		Globals.states.GAMEPLAY: pass
+
+
+func launch_state():
+	if not launch_seqeunce.is_playing():
+		var new_bubble = BUBBLE.instantiate()
+		new_bubble.position = Vector2(0,720)
+		new_bubble.rotation = -PI/2
+		add_child(new_bubble)
+
+		Globals.state = Globals.states.GAMEPLAY
+		
 
 func _on_soap_spawn_timer_timeout():
 	#safe_spawn(SOAP, "Soaps", 0)
@@ -15,7 +34,7 @@ func _on_soap_spawn_timer_timeout():
 
 
 func _on_enemy_spawn_timer_timeout():
-	safe_spawn(NEEDLEHEAD, "Enemies", 800)
+	#safe_spawn(NEEDLEHEAD, "Enemies", 800)
 	pass
 
 func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_player : float):
