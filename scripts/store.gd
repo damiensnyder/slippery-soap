@@ -32,7 +32,8 @@ extends Node2D
 	"Hey hoooooo look at this bubble go!",
 	"AHHHHHHHHHHHHHH",
 	"penis",
-	"Once upon a time there was a... are you going to buy something?"
+	"Once upon a time there was a... are you going to buy something?",
+	"Now with 50% more flavor!!"
 ]
 @onready var shop_talker = $Bubble_talk
 @onready var item_prices = {
@@ -52,7 +53,8 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var my_random_number = rng.randf_range(0, rand_shop_text.size()-1)
-	shop_talker.text = rand_shop_text[my_random_number]
+	var string = str(rand_shop_text[my_random_number])
+	shop_talker.text = "[wave amp=50.0 freq=5.0 connected=1]" + string + "[/wave]"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
