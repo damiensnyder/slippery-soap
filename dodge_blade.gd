@@ -36,5 +36,4 @@ func _on_blade_body_entered(body: Node2D) -> void:
 			get_node("/root/GameManager").add_child(new_soap)
 		queue_free()
 	elif body.is_in_group("Walls"):
-		print("hi")
 		queue_free()

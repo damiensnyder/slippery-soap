@@ -9,5 +9,4 @@ func _ready() -> void:
 	death_timer.start()
 
 func _on_timer_timeout():
-	print("destroy")
 	queue_free()

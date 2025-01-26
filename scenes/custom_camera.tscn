@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqi4isfy80gdo"]
+[gd_scene load_steps=3 format=3 uid="uid://dqi4isfy80gdo"]
 
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="1_udtlt"]
+[ext_resource type="Texture2D" uid="uid://bbvj6chcllcty" path="res://assets/soap_placeholder.png" id="2_1267f"]
 
 [node name="Camera2D" type="Camera2D"]
 script = ExtResource("1_udtlt")
 
 [node name="EndShake" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-853, -458)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1267f")
