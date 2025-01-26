@@ -27,12 +27,11 @@ func launch_state():
 		add_child(new_bubble)
 
 		Globals.state = Globals.states.GAMEPLAY
-		
+
 
 func _on_soap_spawn_timer_timeout():
 	#safe_spawn(SOAP, "Soaps", 0)
 	pass
-
 
 func _on_enemy_spawn_timer_timeout():
 	safe_spawn(NEEDLEHEAD, "Enemies", 1000)

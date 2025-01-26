@@ -120,7 +120,12 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	if Input.is_action_pressed("brake"):
 		# double the angular velocity change
 		angular_velocity += 0.005 * flip * angular_recoil
-	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Dodge Blades") or body.is_in_group("Enemies"):
+		get_tree().reload_current_scene()
+
 
 func is_bubble():
 	pass #dw about it
