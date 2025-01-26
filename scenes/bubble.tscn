@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://2stoc0om2ift"]
+[gd_scene load_steps=32 format=3 uid="uid://2stoc0om2ift"]
 
 [ext_resource type="Script" path="res://scripts/bubble.gd" id="1_c4r1n"]
 [ext_resource type="Texture2D" uid="uid://elyqu4ur4a2c" path="res://assets/bubble_sheet.png" id="2_sh8lc"]
@@ -191,6 +191,8 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8c78p"]
+
 [node name="Bubble" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 collision_layer = 7
@@ -245,3 +247,14 @@ autostart = true
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 22
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(10, 0)
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_8c78p")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
