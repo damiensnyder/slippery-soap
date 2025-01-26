@@ -33,7 +33,6 @@ var mouse_in_ammo = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#selected_sprite.texture
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,7 +47,6 @@ func _process(delta: float) -> void:
 			fade_index -= fade_speed
 
 	if Input.is_action_just_pressed("click") and fade_index >= 1:
-		print(item_prices["_Ammo"].size())
 		match selected_item:
 			"": pass
 			"Gun": 
@@ -76,13 +74,14 @@ func _process(delta: float) -> void:
 						if Globals.ammo_upgrade_lvl + 1 <= item_prices["_Ammo"].size():
 							#if there's another upgrade
 							Globals.ammo_upgrade_lvl += 1
+							Globals.max_ammo = Globals.ammo_upgrade_tiers[Globals.ammo_upgrade_lvl]
+							Globals.ammo = Globals.max_ammo
 					shield:
 						if Globals.shield_upgrade_lvl + 1 <= item_prices["_Shield"].size():
 							#if there's another upgrade
 							Globals.shield_upgrade_lvl += 1
 					gun:
 						if Globals.gun_upgrade_lvl < 1:
-							print("gun")
 							#if there's another upgrade
 							Globals.gun_upgrade_lvl += 1
 				Globals.soap -= selected_price
