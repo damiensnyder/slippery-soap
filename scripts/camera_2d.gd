@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Globals.state == Globals.states.GAMEPLAY:
 		if Globals.player_position.y < 0 or lerp(position.y, Globals.player_position.y, 0.05) > position.y:
-			position = lerp(position, Globals.player_position, 0.05)
+			position = lerp(position, Vector2(Globals.player_position.x, Globals.player_position.y - 200), 0.05)
 			position.x = clamp(position.x, limit_left + res_x/2, limit_right - res_x/2)
 			position.y = clamp(position.y, limit_top + res_y/2, limit_bottom - res_y/2)
 

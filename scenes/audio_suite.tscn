@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwdb0j0dq3u21"]
+
+[ext_resource type="AudioStream" uid="uid://do3jrqn2ueqm7" path="res://assets/ahhh1.wav" id="1_3b7h6"]
+[ext_resource type="AudioStream" uid="uid://di555lre42dhn" path="res://assets/ow1.wav" id="2_4h0c3"]
+
+[node name="AudioSuite" type="Node2D"]
+
+[node name="ScreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3b7h6")
+
+[node name="OuchPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4h0c3")

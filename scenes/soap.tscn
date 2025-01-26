@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqju8d1ml17a7"]
 
 [ext_resource type="Script" path="res://scripts/soap.gd" id="1_mfjpi"]
-[ext_resource type="Texture2D" uid="uid://bbvj6chcllcty" path="res://assets/soap_placeholder.png" id="1_t04fq"]
+[ext_resource type="Texture2D" uid="uid://h5udjka2loxq" path="res://assets/soap_purple.png" id="2_tcp68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nmln"]
 size = Vector2(182, 128)
@@ -13,7 +13,8 @@ collision_mask = 0
 script = ExtResource("1_mfjpi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_t04fq")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tcp68")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
