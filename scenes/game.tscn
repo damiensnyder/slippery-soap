@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_1ll71"]
 [ext_resource type="PackedScene" uid="uid://dc3xexybcvyms" path="res://scenes/wall.tscn" id="2_iddn8"]
 [ext_resource type="Script" path="res://scripts/debug_movement_settings.gd" id="4_ap0ag"]
-[ext_resource type="PackedScene" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
-[ext_resource type="Texture2D" uid="uid://ctip2v5meq0de" path="res://assets/background.png" id="6_uoxb7"]
-[ext_resource type="Texture2D" uid="uid://ky71gmc3hp7m" path="res://assets/background_upper.jpg" id="7_jy0yt"]
-[ext_resource type="Texture2D" uid="uid://cvh8jufdkf80h" path="res://assets/launch_sheet.png" id="7_ytvbr"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="8_nuht8"]
+[ext_resource type="PackedScene" uid="uid://dpbokwsp118f0" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
+[ext_resource type="Texture2D" uid="uid://4ccyeputv43f" path="res://assets/background.png" id="6_uoxb7"]
+[ext_resource type="Texture2D" uid="uid://cw251tdy10v7i" path="res://assets/background_upper.jpg" id="7_jy0yt"]
+[ext_resource type="Texture2D" uid="uid://l3wda5jdhj5p" path="res://assets/launch_sheet.png" id="7_ytvbr"]
+[ext_resource type="PackedScene" uid="uid://clsekfb1qekye" path="res://scenes/ui.tscn" id="8_nuht8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3voes"]
 atlas = ExtResource("7_ytvbr")

@@ -5,7 +5,7 @@ const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 const BUBBLE = preload("res://scenes/bubble.tscn")
 
 @onready var launch_seqeunce = $LaunchSeqeunce
-#@onready var store = $Store
+@onready var store = $Store
 @onready var ui = $UI
 @onready var camera = $Camera2D
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
@@ -25,18 +25,18 @@ func _physics_process(delta):
 
 func in_store():
 	#just in case delete player if exits
-	#var player_check = get_node_or_null("res://scenes/bubble.tscn")
-	#if player_check != null:
-		#player_check.queue_free()
-	#
-	#store.fade = true
-	#store.in_ = true
-	#ui.visible = false
-	#
-	#if Input.is_action_just_pressed("ui_accept"):
-		#Globals.state = Globals.states.LAUNCH
-		#launch_seqeunce.play()
-		#ui.visible = true
+	var player_check = get_node_or_null("res://scenes/bubble.tscn")
+	if player_check != null:
+		player_check.queue_free()
+	
+	store.fade = true
+	store.in_ = true
+	ui.visible = false
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		Globals.state = Globals.states.LAUNCH
+		launch_seqeunce.play()
+		ui.visible = true
 	pass
 
 func transition_to_store():
