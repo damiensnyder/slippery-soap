@@ -151,10 +151,10 @@ position = Vector2(958, 539)
 texture = ExtResource("8_eqs1o")
 
 [node name="Bubble_talk" type="RichTextLabel" parent="."]
-offset_left = 512.0
-offset_top = 620.0
-offset_right = 852.0
-offset_bottom = 841.0
+offset_left = 999.0
+offset_top = 456.0
+offset_right = 1339.0
+offset_bottom = 677.0
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 

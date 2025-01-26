@@ -207,7 +207,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 13.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ughmr"]
@@ -314,7 +314,7 @@ script = ExtResource("10_e7pxu")
 shape = SubResource("RectangleShape2D_ughmr")
 
 [node name="Curtain" type="Sprite2D" parent="FinishLine"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0.376471, 0.376471, 0.376471, 0)
 z_index = 10
 scale = Vector2(40, 20)
 texture = ExtResource("11_cbhv8")

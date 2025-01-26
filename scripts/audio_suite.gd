@@ -9,3 +9,4 @@ extends Node2D
 @onready var ding_player = $DingPlayer
 @onready var ammo_player = $AmmoPlayer
 @onready var chaching_player = $ChaChingPlayer
+@onready var launch_player = $LaunchPlayer

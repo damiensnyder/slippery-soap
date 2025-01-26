@@ -15,7 +15,9 @@ const SUPPORTER = preload("res://scenes/supporter.tscn")
 @onready var poopy = false #sorry again, this is for instore()
 
 func _ready():
+	Globals.ammo = Globals.max_ammo #this is done elsewhere but feels better to do it here imo
 	if Globals.first_round == true:
+		curtain.modulate.a = 1.0
 		launch_seqeunce.frame = 0
 		Globals.first_round = false
 		curtain.modulate.a = 1
@@ -28,6 +30,7 @@ func _physics_process(delta):
 		Globals.states.GAMEPLAY: pass
 		Globals.states.STORE: in_store()
 		Globals.states.TRANSITION_TO_STORE: transition_to_store()
+		Globals.states.EXIT_TO_MENU: exit_to_menu()
 
 func in_store():
 	#just in case delete player if exits
@@ -45,11 +48,13 @@ func in_store():
 		store.fade = true
 		store.in_ = false
 		poopy = true
+		
 	if store.fade_index <= 0 and poopy == true:
 			Globals.state = Globals.states.PRELAUNCH
 			launch_seqeunce.frame = 0
 			#launch_seqeunce.play()
 			ui.visible = true
+	
 	pass
 
 func transition_to_store():
@@ -59,17 +64,36 @@ func transition_to_store():
 
 func prelaunch_state():
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
+	store.modulate.a = 0 # fade out doesn't work in store.gd at certain framerates
+	
 	if curtain.modulate.a < 0.01:
 		curtain.modulate.a = 0
+		ui.visible = true
+		
 	if Input.is_action_just_pressed("launch"):
 		Globals.state = Globals.states.LAUNCH
 		curtain.modulate.a = 0
 		launch_seqeunce.play()
+		AudioSuite.launch_player.play()
+	
+	if Input.is_action_just_pressed("previous"):
+		ui.visible = false
+		Globals.state = Globals.states.EXIT_TO_MENU
+
+
+func exit_to_menu():
+	curtain.modulate.a = lerp(curtain.modulate.a, 1.0, 0.05)
+	if curtain.modulate.a > 0.99:
+		curtain.modulate.a = 1.0
+		Globals.state = Globals.states.PRELAUNCH # so you don't get stuck in the menu
+		Globals.first_round = true
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func launch_state():
 	once = true #for fading in shop, i lazy rn
 	poopy = false #ahhh
+	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	if launch_seqeunce.frame == 26:
 		var new_bubble = BUBBLE.instantiate()
 		new_bubble.position = Vector2(0,650)

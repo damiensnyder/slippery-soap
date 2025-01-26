@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhfpt03g0wjv3"]
+[gd_scene load_steps=12 format=3 uid="uid://dhfpt03g0wjv3"]
 
 [ext_resource type="Script" path="res://scripts/audio_suite.gd" id="1_001av"]
 [ext_resource type="AudioStream" uid="uid://do3jrqn2ueqm7" path="res://assets/ahhh1.wav" id="1_3b7h6"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cnp1a7m35i7tj" path="res://assets/ding.wav" id="7_3jp47"]
 [ext_resource type="AudioStream" uid="uid://q28hi8vuxfso" path="res://assets/chaching.wav" id="8_7ehl6"]
 [ext_resource type="AudioStream" uid="uid://b7iidrb6kyvuy" path="res://assets/ammo.wav" id="8_bc32b"]
+[ext_resource type="AudioStream" uid="uid://dr5hi6e4171uy" path="res://assets/launch.wav" id="11_422l8"]
 
 [node name="AudioSuite" type="Node2D"]
 script = ExtResource("1_001av")
@@ -31,6 +32,7 @@ max_polyphony = 6
 [node name="LoudGunshotPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_fierc")
 volume_db = -15.0
+max_polyphony = 6
 
 [node name="PshewPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lcb1x")
@@ -46,3 +48,6 @@ volume_db = 10.0
 
 [node name="ChaChingPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_7ehl6")
+
+[node name="LaunchPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_422l8")

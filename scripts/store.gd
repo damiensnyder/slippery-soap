@@ -23,27 +23,28 @@ extends Node2D
 	"Ammo: Increase your sweet sweet ammo"
 ]
 @onready var rand_shop_text = [
-	"I'm so tired I feel like popping some bubbles if you knwo what I mean",
-	"Oh my fuck",
-	"You ever been to the you ever do the thing where you have you",
-	"Radiation",
-	"Hold on a second... Have I met you before?",
-	"Don't.. just don't look at me right now please",
-	"Hey hoooooo look at this bubble go!",
-	"AHHHHHHHHHHHHHH",
-	"penis",
-	"Once upon a time there was a... damn are you going to buy something?",
-	"Now with 50% more flavor!!"
+	#"I'm so tired I feel like popping some bubbles if you knwo what I mean",
+	#"Oh my fuck",
+	#"You ever been to the you ever do the thing where you have you",
+	#"Radiation",
+	#"Hold on a second... Have I met you before?",
+	#"Don't.. just don't look at me right now please",
+	#"Hey hoooooo look at this bubble go!",
+	#"AHHHHHHHHHHHHHH",
+	#"penis",
+	#"Once upon a time there was a... damn are you going to buy something?",
+	#"Now with 50% more flavor!!",
+	"Click on the items you want to buy, and press space when you're done!"
 ]
 @onready var shop_talker = $Bubble_talk
 @onready var item_prices = {
-	"_Gun" : [50],
-	"_Shield" : [30, 35, 40, 45, 50],
-	"_Ammo" : [10, 15, 20, 25, 30, 35, 40, 45, 50]
+	"_Gun" : [17],
+	"_Shield" : [10, 12, 14, 16, 18],
+	"_Ammo" : [3, 5, 7, 9, 11, 13, 15, 17, 19]
 }
 @onready var shown_item = ""
 var fade_index = 0
-var fade_speed = 0.01
+var fade_speed = 0.05
 var in_ = true
 var mouse_in_gun = false #fuck ittttttttt this is not the way to do this
 var mouse_in_shield = false
@@ -56,8 +57,7 @@ func _ready() -> void:
 	var string = str(rand_shop_text[my_random_number])
 	shop_talker.text = "[wave amp=50.0 freq=5.0 connected=1]" + string + "[/wave]"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	soap_text.text = "= " + str(Globals.soap)
 	if fade == true:
 		if in_ == true and fade_index < 1:
