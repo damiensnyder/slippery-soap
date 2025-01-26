@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhfpt03g0wjv3"]
+[gd_scene load_steps=9 format=3 uid="uid://dhfpt03g0wjv3"]
 
 [ext_resource type="Script" path="res://scripts/audio_suite.gd" id="1_001av"]
 [ext_resource type="AudioStream" uid="uid://c1nkgfvniej5k" path="res://assets/ahhh1.wav" id="1_3b7h6"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://beycsjdh08vwu" path="res://assets/pop2.wav" id="5_07x6k"]
 [ext_resource type="AudioStream" uid="uid://630l3mp7b4f6" path="res://assets/pshew.wav" id="6_lcb1x"]
 [ext_resource type="AudioStream" uid="uid://cgv20y7js3ihb" path="res://assets/ding.wav" id="7_3jp47"]
+[ext_resource type="AudioStream" uid="uid://y1di4p1pa4tn" path="res://assets/chaching.wav" id="8_7ehl6"]
 
 [node name="AudioSuite" type="Node2D"]
 script = ExtResource("1_001av")
@@ -36,3 +37,4 @@ max_polyphony = 3
 [node name="AmmoPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="ChaChingPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7ehl6")
