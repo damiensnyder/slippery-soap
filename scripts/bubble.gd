@@ -21,7 +21,7 @@ var is_popped = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity = Vector2(0, 50)
+	# velocity = Vector2(0, -50)
 	floating_sprite.visible = true
 	popped_sprite.visible = false
 
@@ -36,6 +36,7 @@ func _physics_process(delta):
 		if collision and collision.get_collider().has_method("is_wall"):
 			velocity = velocity.bounce(collision.get_normal())
 			Globals.ammo = Globals.max_ammo
+			Globals.state = Globals.states.STORE
 			get_tree().reload_current_scene()
 	
 	var direction = Vector2(cos(rotation), sin(rotation))

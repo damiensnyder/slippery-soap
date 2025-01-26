@@ -24,10 +24,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_left"):
 		apply_shake()
 	
-	if Globals.state == Globals.states.GAMEPLAY: 
-		position = lerp(position, Globals.player_position, 0.05)
-		position.x = clamp(position.x, limit_left + res_x/2, limit_right - res_x/2)
-		position.y = clamp(position.y, limit_top + res_y/2, limit_bottom - res_y/2)
+	if Globals.state == Globals.states.GAMEPLAY:
+		if Globals.player_position.y < 0 or lerp(position.y, Globals.player_position.y, 0.05) > position.y:
+			position = lerp(position, Globals.player_position, 0.05)
+			position.x = clamp(position.x, limit_left + res_x/2, limit_right - res_x/2)
+			position.y = clamp(position.y, limit_top + res_y/2, limit_bottom - res_y/2)
 
 func _get_random_offset():
 	var rand_move = Vector2(

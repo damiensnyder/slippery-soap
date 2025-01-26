@@ -1,6 +1,6 @@
 extends Label
 
-@onready var bubble = $"../Bubble"
+@onready var bubble = preload("res://scenes/bubble.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
