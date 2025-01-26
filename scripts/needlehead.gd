@@ -11,6 +11,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if (Globals.player_position - position).length() > 1500:
+		return
 	var player_direction = Globals.player_position - position
 	var angle_to_player = atan2(player_direction.y, player_direction.x)
 	var direction = Vector2(cos(rotation), sin(rotation))

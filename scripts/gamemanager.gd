@@ -34,11 +34,11 @@ func _on_soap_spawn_timer_timeout():
 	pass
 
 func _on_enemy_spawn_timer_timeout():
-	safe_spawn(NEEDLEHEAD, "Enemies", 1000)
+	safe_spawn(NEEDLEHEAD, "Enemies", 2000)
 	pass
 
 func _on_dodge_blade_spawn_timer_timeout():
-	safe_spawn(DODGE_BLADE, "DodgeBlades", 1000)
+	safe_spawn(DODGE_BLADE, "DodgeBlades", 2000)
 
 func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_player : float):
 	var new_node = scene.instantiate()
@@ -49,7 +49,7 @@ func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_playe
 		loop_count += 1
 		if loop_count > 1000: return
 		
-		new_node.position = Globals.player_position + Vector2(randf_range(-1000, 1000), randf_range(-1000, 600))
+		new_node.position = Globals.player_position + Vector2(randf_range(-1000, 1000), randf_range(-3000, 600))
 		if new_node.position.distance_to(Globals.player_position) < min_spawn_distance_to_player: continue
 		
 		var too_close = false # set to true if we find something too close

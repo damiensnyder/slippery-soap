@@ -221,7 +221,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.0
 autostart = true
 
 [node name="Debug Movement Settings" type="Label" parent="."]
@@ -276,7 +276,6 @@ limit_right = 1920
 limit_bottom = 960
 
 [node name="DodgeBladeSpawnTimer" type="Timer" parent="."]
-wait_time = 1.5
 autostart = true
 
 [connection signal="timeout" from="SoapSpawnTimer" to="." method="_on_soap_spawn_timer_timeout"]
