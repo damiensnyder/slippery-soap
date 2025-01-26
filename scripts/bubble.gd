@@ -129,6 +129,7 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Dodge Blades") or body.is_in_group("Enemies"):
+		Globals.ammo = Globals.max_ammo
 		get_tree().reload_current_scene()
 
 

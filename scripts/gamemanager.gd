@@ -34,7 +34,12 @@ func _on_soap_spawn_timer_timeout():
 	pass
 
 func _on_enemy_spawn_timer_timeout():
-	safe_spawn(NEEDLEHEAD, "Enemies", 2000)
+	if Globals.ammo > 0:
+		safe_spawn(NEEDLEHEAD, "Enemies", 2000)
+	else:
+		var new_node = NEEDLEHEAD.instantiate()
+		new_node.position = Globals.player_position + Vector2(0, -500)
+		add_child(new_node)
 	pass
 
 func _on_dodge_blade_spawn_timer_timeout():
@@ -55,7 +60,7 @@ func safe_spawn(scene : PackedScene, group : String, min_spawn_distance_to_playe
 		var too_close = false # set to true if we find something too close
 		var group_members = get_tree().get_nodes_in_group(group)
 		for group_member in group_members:
-			if new_node.position.distance_to(group_member.position) < 200: too_close = true
+			if new_node.position.distance_to(group_member.position) > 200: too_close = true
 		if too_close: continue
 		
 		ready_to_spawn = true
