@@ -58,6 +58,11 @@ func _ready() -> void:
 	shop_talker.text = "[wave amp=50.0 freq=5.0 connected=1]" + string + "[/wave]"
 
 func _physics_process(delta: float) -> void:
+	if Globals.state == Globals.states.STORE and not AudioSuite.shop_theme_player.playing:
+		AudioSuite.shop_theme_player.play()
+	elif Globals.state != Globals.states.STORE and AudioSuite.shop_theme_player.playing:
+		AudioSuite.shop_theme_player.stop()
+	
 	soap_text.text = "= " + str(Globals.soap)
 	if fade == true:
 		if in_ == true and fade_index < 1:

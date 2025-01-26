@@ -1,13 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://dprle8qeylhe5"]
+[gd_scene load_steps=19 format=3 uid="uid://csyai324rhm6e"]
 
-[ext_resource type="Texture2D" uid="uid://cdnk8tdnj34tq" path="res://assets/store.png" id="1_rfmim"]
+[ext_resource type="Texture2D" uid="uid://c4itm8dr0uep6" path="res://assets/store.png" id="1_rfmim"]
 [ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
-[ext_resource type="Texture2D" uid="uid://b6ktn3jvhrtsg" path="res://assets/store_gun.png" id="3_0bbg6"]
-[ext_resource type="Texture2D" uid="uid://h5udjka2loxq" path="res://assets/soap_purple.png" id="3_0elw6"]
-[ext_resource type="Texture2D" uid="uid://w1b54q8i3dap" path="res://assets/bubble_guy.png" id="3_xw6xs"]
-[ext_resource type="Texture2D" uid="uid://roicrop1n8mu" path="res://assets/store_shield.png" id="4_ta8tn"]
-[ext_resource type="Texture2D" uid="uid://duptgtob3opgb" path="res://assets/store_ammo.png" id="6_nbk2x"]
-[ext_resource type="Texture2D" uid="uid://csjb5da81nc06" path="res://assets/buy.png" id="8_eqs1o"]
+[ext_resource type="Texture2D" uid="uid://dxi0p2tpk1o1e" path="res://assets/store_gun.png" id="3_0bbg6"]
+[ext_resource type="Texture2D" uid="uid://y70t8aad2lnq" path="res://assets/soap_purple.png" id="3_0elw6"]
+[ext_resource type="Texture2D" uid="uid://b6twa53fo7t2n" path="res://assets/bubble_guy.png" id="3_xw6xs"]
+[ext_resource type="Texture2D" uid="uid://ym1ecj7x3xib" path="res://assets/store_shield.png" id="4_ta8tn"]
+[ext_resource type="Texture2D" uid="uid://bsn2oe8fbw3na" path="res://assets/store_ammo.png" id="6_nbk2x"]
+[ext_resource type="Texture2D" uid="uid://cxs5h3ghpd2nm" path="res://assets/buy.png" id="8_eqs1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c1xv"]
 atlas = ExtResource("3_xw6xs")

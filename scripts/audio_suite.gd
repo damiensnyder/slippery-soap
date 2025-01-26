@@ -10,3 +10,4 @@ extends Node2D
 @onready var ammo_player = $AmmoPlayer
 @onready var chaching_player = $ChaChingPlayer
 @onready var launch_player = $LaunchPlayer
+@onready var shop_theme_player = $ShopThemePlayer
