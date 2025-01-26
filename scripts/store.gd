@@ -91,13 +91,13 @@ func _process(delta: float) -> void:
 							#if there's another upgrade
 							Globals.shield_upgrade_lvl += 1
 							if Globals.shield_upgrade_lvl >= item_prices["_Shield"].size():
-								shield_sprite.texture = "res://assets/sold.png"
+								shield_sprite.texture = sold_out
 					gun:
 						if Globals.gun_upgrade_lvl < 1:
 							#if there's another upgrade
 							Globals.gun_upgrade_lvl += 1
 							if Globals.gun_upgrade_lvl >= item_prices["_Gun"].size():
-								gun_sprite.texture = "res://assets/sold.png"
+								gun_sprite.texture = sold_out
 				Globals.soap -= selected_price
 				selected_sprite.texture = null
 				selected_item = ""
