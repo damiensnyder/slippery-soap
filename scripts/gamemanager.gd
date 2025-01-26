@@ -3,6 +3,7 @@ extends Node2D
 const SOAP = preload("res://scenes/soap.tscn")
 const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 const BUBBLE = preload("res://scenes/bubble.tscn")
+const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 @onready var launch_seqeunce = $LaunchSeqeunce
 @onready var store = $Store
@@ -10,7 +11,6 @@ const BUBBLE = preload("res://scenes/bubble.tscn")
 @onready var camera = $Camera2D
 @onready var once = true #fuck it sorry
 @onready var poopy = false #sorry again, this is for instore()
-const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 func _ready():
 	if Globals.first_round == true:
