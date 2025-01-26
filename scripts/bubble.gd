@@ -43,7 +43,7 @@ func _physics_process(delta):
 		if collision and collision.get_collider().has_method("is_wall"):
 			velocity = velocity.bounce(collision.get_normal())
 			Globals.ammo = Globals.max_ammo
-			Globals.state = Globals.states.STORE
+			Globals.state = Globals.states.STORE #STORE
 			get_tree().reload_current_scene()
 	
 	var direction = Vector2(cos(rotation), sin(rotation))

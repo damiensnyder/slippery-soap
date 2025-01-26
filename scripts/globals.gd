@@ -17,7 +17,8 @@ var lateral_air_friction = 1
 var angular_air_friction = 1
 
 func _ready() -> void:
-	print(state)
+	#print(state)
+	pass
 
 func emit_screenshake():
 	emit_signal("shake_screen")

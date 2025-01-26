@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://di07krsocukfl"]
+
+[ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/store.png" id="1_rfmim"]
+[ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
+[ext_resource type="Texture2D" uid="uid://bbjy1gfg2uwsb" path="res://assets/store_gun.png" id="3_0bbg6"]
+[ext_resource type="Texture2D" uid="uid://bmwvgy6ybuai2" path="res://assets/store_shield.png" id="4_ta8tn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77hbx"]
+size = Vector2(252, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpxyl"]
+size = Vector2(196, 144)
+
+[node name="Store" type="Node2D"]
+script = ExtResource("1_rwmah")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_rfmim")
+
+[node name="Gun" type="Sprite2D" parent="."]
+position = Vector2(210, 248)
+texture = ExtResource("3_0bbg6")
+
+[node name="GunArea2D" type="Area2D" parent="Gun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/GunArea2D"]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_77hbx")
+
+[node name="Shield" type="Sprite2D" parent="."]
+position = Vector2(1120, 301)
+texture = ExtResource("4_ta8tn")
+
+[node name="ShieldArea2D" type="Area2D" parent="Shield"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/ShieldArea2D"]
+position = Vector2(6, -14)
+shape = SubResource("RectangleShape2D_bpxyl")
+
+[node name="Shopkeep" type="AnimatedSprite2D" parent="."]
+
+[connection signal="mouse_entered" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_exited"]

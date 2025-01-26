@@ -11,10 +11,10 @@ const BUBBLE = preload("res://scenes/bubble.tscn")
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 func _ready():
-	#if Globals.first_round == true:
-	launch_seqeunce.play()
-	Globals.first_round = false
-	Globals.state = Globals.states.LAUNCH
+	if Globals.first_round == true:
+		launch_seqeunce.play()
+		Globals.first_round = false
+		Globals.state = Globals.states.LAUNCH
 	
 func _physics_process(delta):
 	match Globals.state:
