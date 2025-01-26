@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clsekfb1qekye"]
+[gd_scene load_steps=3 format=3 uid="uid://bowvmmeel466u"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_op1fp"]
-[ext_resource type="Texture2D" uid="uid://ct8apwq5uib23" path="res://assets/soap_purple.png" id="2_dhalc"]
+[ext_resource type="Texture2D" uid="uid://h5udjka2loxq" path="res://assets/soap_purple.png" id="2_dhalc"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_op1fp")

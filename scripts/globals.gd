@@ -8,7 +8,7 @@ var state
 var player_position = Vector2(0,0)
 var max_ammo = 26
 var ammo = max_ammo
-var soap = 0 # INITIAL SOAP
+var soap = 500 # INITIAL SOAP
 var first_round = true
 var ammo_upgrade_lvl = 0
 var ammo_upgrade_tiers = [26, 36, 46, 54, 72, 85, 100, 115, 130, 150] #there r 6 INCLUDING the one u start on

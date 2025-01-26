@@ -426,7 +426,7 @@ animations = [{
 
 [node name="Main Menu" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_qvu1c")
-frame_progress = 0.397715
+frame_progress = 0.717345
 script = ExtResource("2_pr21p")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -44,7 +44,7 @@ extends Node2D
 }
 @onready var shown_item = ""
 var fade_index = 0
-var fade_speed = 0.05
+var fade_speed = 0.1 #doubled from 0.05. i like it that way
 var in_ = true
 var mouse_in_gun = false #fuck ittttttttt this is not the way to do this
 var mouse_in_shield = false

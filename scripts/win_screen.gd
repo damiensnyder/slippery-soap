@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @onready var curtain = $WinScreenCurtain
 
@@ -8,7 +8,9 @@ var state = states.IN
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.first_round = true
-
+	frame = 0
+	animation = "default"
+	play()
 
 func _physics_process(delta):
 	match state:
@@ -21,5 +23,9 @@ func _physics_process(delta):
 				curtain.modulate.a = 1.0
 				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("next"):
 		state = states.OUT
+	
+	if not is_playing():
+		animation = "loop"
+		play()

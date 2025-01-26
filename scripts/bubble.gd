@@ -53,7 +53,7 @@ func _physics_process(delta):
 		velocity += Vector2(0, 0.2)
 		var collision = move_and_collide(velocity * 2)
 		Globals.player_position = position
-		if position.y > 700 or collision and (collision.get_collider().is_in_group("Walls") or collision.get_collider().to_string().contains("Top")): #idk why groups alone don't work here
+		if position.y > 700 or collision and (collision.get_collider().is_in_group("Walls")): #idk why groups alone don't work here
 			AudioSuite.scream_player.stop()
 			AudioSuite.ouch_player.play()
 			if collision: velocity = velocity.bounce(collision.get_normal())
