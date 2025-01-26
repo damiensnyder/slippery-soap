@@ -11,7 +11,7 @@ var ammo = max_ammo
 var soap = 3000
 var first_round = true
 var ammo_upgrade_lvl = 0
-var ammo_upgrade_tiers = [26, 34, 42, 50, 68, 76] #there r 6 INCLUDING the one u start on
+var ammo_upgrade_tiers = [26, 36, 46, 54, 72, 84] #there r 6 INCLUDING the one u start on
 var shield_upgrade_lvl = 0
 var gun_upgrade_lvl = 0
 

@@ -4,11 +4,16 @@ extends Node2D
 @onready var gun = preload("res://assets/store_gun.png")
 @onready var shield = preload("res://assets/store_shield.png")
 @onready var ammo = preload("res://assets/store_ammo.png")
+@onready var sold_out = preload("res://assets/sold.png")
 @onready var sprite = $Background
 @onready var description = $RichTextLabel
 @onready var price_label = $PriceLabel
 @onready var selected_sprite = $SelectedSprite
 @onready var soap_text = $SoapText
+@onready var buy_sprite = $BuySprite
+@onready var gun_sprite = $Gun
+@onready var shield_sprite = $Shield
+@onready var ammo_sprite = $Ammo
 @onready var selected_item = ""
 @onready var selected_buy = false
 @onready var selected_price = 0
@@ -55,18 +60,21 @@ func _process(delta: float) -> void:
 					price_label.text = "Price: " + str(item_prices["_Gun"][0])
 					selected_price = item_prices["_Gun"][0]
 					selected_sprite.texture = gun
+					buy_sprite.visible = true
 			"Shield":
 				if Globals.shield_upgrade_lvl < item_prices["_Shield"].size():
 					description.text = item_text[1]
 					price_label.text = "Price: " + str(item_prices["_Shield"][Globals.shield_upgrade_lvl])
 					selected_price = item_prices["_Shield"][Globals.shield_upgrade_lvl]
 					selected_sprite.texture = shield
+					buy_sprite.visible = true
 			"Ammo":
 				if Globals.ammo_upgrade_lvl < item_prices["_Ammo"].size():
 					description.text = item_text[2]
 					price_label.text = "Price: " + str(item_prices["_Ammo"][Globals.ammo_upgrade_lvl])
 					selected_price = item_prices["_Ammo"][Globals.ammo_upgrade_lvl]
 					selected_sprite.texture = ammo
+					buy_sprite.visible = true
 		if selected_buy:
 			if Globals.soap >= selected_price and selected_price != 0:
 				match selected_sprite.texture: #upgrades
@@ -76,20 +84,27 @@ func _process(delta: float) -> void:
 							Globals.ammo_upgrade_lvl += 1
 							Globals.max_ammo = Globals.ammo_upgrade_tiers[Globals.ammo_upgrade_lvl]
 							Globals.ammo = Globals.max_ammo
+							if Globals.ammo_upgrade_lvl >= item_prices["_Ammo"].size():
+								ammo_sprite.texture = sold_out
 					shield:
 						if Globals.shield_upgrade_lvl + 1 <= item_prices["_Shield"].size():
 							#if there's another upgrade
 							Globals.shield_upgrade_lvl += 1
+							if Globals.shield_upgrade_lvl >= item_prices["_Shield"].size():
+								shield_sprite.texture = "res://assets/sold.png"
 					gun:
 						if Globals.gun_upgrade_lvl < 1:
 							#if there's another upgrade
 							Globals.gun_upgrade_lvl += 1
+							if Globals.gun_upgrade_lvl >= item_prices["_Gun"].size():
+								gun_sprite.texture = "res://assets/sold.png"
 				Globals.soap -= selected_price
 				selected_sprite.texture = null
 				selected_item = ""
 				description.text = ""
 				price_label.text = ""
 				selected_price = 0
+				buy_sprite.visible = false
 
 #fuck it im tired im making 6 of these
 func _on_area_2d_mouse_entered() -> void: #gun

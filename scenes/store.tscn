@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://di07krsocukfl"]
+[gd_scene load_steps=19 format=3 uid="uid://di07krsocukfl"]
 
 [ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/store.png" id="1_rfmim"]
 [ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ct0a52vtloxhm" path="res://assets/bubble_guy.png" id="3_xw6xs"]
 [ext_resource type="Texture2D" uid="uid://bmwvgy6ybuai2" path="res://assets/store_shield.png" id="4_ta8tn"]
 [ext_resource type="Texture2D" uid="uid://rqypxlvxtnpa" path="res://assets/store_ammo.png" id="6_nbk2x"]
+[ext_resource type="Texture2D" uid="uid://6dohewg2xk35" path="res://assets/buy.png" id="8_eqs1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c1xv"]
 atlas = ExtResource("3_xw6xs")
@@ -138,11 +139,16 @@ shape = SubResource("RectangleShape2D_8chmr")
 position = Vector2(1615, 277)
 
 [node name="PriceLabel" type="RichTextLabel" parent="."]
-offset_left = 1430.0
-offset_top = 376.0
+offset_left = 1532.0
+offset_top = 379.0
 offset_right = 1813.0
 offset_bottom = 488.0
 theme_override_font_sizes/normal_font_size = 36
+
+[node name="BuySprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(958, 539)
+texture = ExtResource("8_eqs1o")
 
 [connection signal="mouse_entered" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_exited"]

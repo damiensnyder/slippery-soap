@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var soap_text = $SoapCounter
 #@onready var current_ammo = Globals.ammo
 @onready var ammo_size = 40 #hardcoding sowwy
-@onready var max_ammo_in_line = (1920/40) - 1
+@onready var max_ammo_in_line = (1920/40) - 2
 @onready var ammo_array = []
 var ammo_check = Globals.ammo
 
@@ -47,10 +47,11 @@ func _physics_process(delta: float) -> void:
 				var new_ammo_sprite = Sprite2D.new()
 				new_ammo_sprite.texture = AMMOSPRITE
 				if p > max_ammo_in_line:
-					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 100
+					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 40
+					new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line+1)))
 				else:
 					new_ammo_sprite.global_position.y = ammo_origin.global_position.y
-				new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * p)
+					new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * p)
 				new_ammo_sprite.scale = Vector2(0.3,0.3)
 				ammo_array.push_back(new_ammo_sprite)
 				add_child(new_ammo_sprite)
