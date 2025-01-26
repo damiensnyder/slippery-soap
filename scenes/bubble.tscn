@@ -1,11 +1,11 @@
 [gd_scene load_steps=41 format=3 uid="uid://2stoc0om2ift"]
 
 [ext_resource type="Script" path="res://scripts/bubble.gd" id="1_c4r1n"]
-[ext_resource type="Texture2D" uid="uid://bi3n1ptpl25pl" path="res://assets/bubble_sheet.png" id="2_sh8lc"]
+[ext_resource type="Texture2D" uid="uid://d0kv3dlc035en" path="res://assets/bubble_sheet.png" id="2_sh8lc"]
 [ext_resource type="Texture2D" uid="uid://b8byuckhplh13" path="res://assets/gun_sheet.png" id="3_x7a0i"]
-[ext_resource type="Texture2D" uid="uid://82s8c5vecvmy" path="res://assets/store_gunsheet.png" id="4_4xq5k"]
-[ext_resource type="Texture2D" uid="uid://cpq7noopsl67w" path="res://assets/popped.png" id="4_dps3m"]
-[ext_resource type="Texture2D" uid="uid://cr7fjpos5jcqc" path="res://assets/shield_placeholder.png" id="5_28xfa"]
+[ext_resource type="Texture2D" uid="uid://bvfhe2i0onfqf" path="res://assets/store_gunsheet.png" id="4_4xq5k"]
+[ext_resource type="Texture2D" uid="uid://c83pjpvml4kej" path="res://assets/popped.png" id="4_dps3m"]
+[ext_resource type="Texture2D" uid="uid://brtmhrr6bfqr8" path="res://assets/shield_placeholder.png" id="5_28xfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlthu"]
 radius = 128.0

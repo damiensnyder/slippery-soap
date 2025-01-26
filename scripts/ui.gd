@@ -25,8 +25,18 @@ func _ready() -> void:
 
 		p += 1
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	soap_text.text = "= " + str(Globals.soap)
+	if Globals.ammo <= 0:
+		for n in (ammo_check - Globals.ammo):
+			if (ammo_array.size() - 1) - (n) >= 0:
+				var bullet = ammo_array[(ammo_array.size() - 1) - (n)]
+				bullet.queue_free()
+			n += 1
+		for m in (ammo_check - Globals.ammo):
+			ammo_array.pop_back()
+			m += 1
+		pass
 	if ammo_check != Globals.ammo:
 		if ammo_check > Globals.ammo: #decrease ammo
 			for n in (ammo_check - Globals.ammo):
@@ -40,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 		elif ammo_check < Globals.ammo: #increase ammo
 			#im tired, delete all remake all
-			for z in (ammo_array.size()-1):
+			for z in (ammo_array.size()):
 				if (ammo_array.size() - 1) - (z) >= 0:
 					var bullet = ammo_array[(ammo_array.size() - 1) - (z)]
 					bullet.queue_free() 
