@@ -5,6 +5,8 @@ const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 const BUBBLE = preload("res://scenes/bubble.tscn")
 
 @onready var launch_seqeunce = $LaunchSeqeunce
+@onready var camera = $Camera2D
+
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 func _ready():
@@ -23,10 +25,12 @@ func in_store():
 	pass
 
 func launch_state():
-	if not launch_seqeunce.is_playing():
+	if launch_seqeunce.frame == 26:
 		var new_bubble = BUBBLE.instantiate()
-		new_bubble.position = Vector2(0,720)
+		new_bubble.position = Vector2(0,650)
+		Globals.player_position = new_bubble.position
 		new_bubble.rotation = -PI/2
+		new_bubble.velocity = Vector2(0,-50)
 		add_child(new_bubble)
 
 		Globals.state = Globals.states.GAMEPLAY
