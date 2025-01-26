@@ -7,6 +7,8 @@ var starting = false #whether game is currently starting
 @onready var left_gun = $LeftGun
 @onready var right_gun = $RightGun
 
+@onready var space_to_continue = $IntroScenes/SpaceToContinue
+
 enum states {MAIN, INTROSCENES, OUT}
 var state = states.MAIN
 
@@ -48,12 +50,15 @@ func main_state():
 
 
 func introscenes_state():
+	if intro_scenes.frame >= 11: space_to_continue.visible = false
+	else: space_to_continue.visible = true
+	
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	intro_scenes.modulate.a = lerp(intro_scenes.modulate.a, 1.0, 0.05)
-	if Input.is_action_just_pressed("next")     and intro_scenes.frame == 10: state = states.OUT
+	if Input.is_action_just_pressed("next")     and intro_scenes.frame == 22: state = states.OUT
 	if Input.is_action_just_pressed("previous") and intro_scenes.frame == 0 : state = states.MAIN
 	
-	if Input.is_action_just_pressed("next")     and intro_scenes.frame < 10: intro_scenes.frame += 1
+	if Input.is_action_just_pressed("next")     and intro_scenes.frame < 22: intro_scenes.frame += 1
 	if Input.is_action_just_pressed("previous") and intro_scenes.frame > 0 : intro_scenes.frame -= 1
 	
 	
