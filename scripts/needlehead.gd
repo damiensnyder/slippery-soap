@@ -28,6 +28,7 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player Projectiles") and body.state == body.states.INAIR:
+		AudioSuite.pshew_player.play()
 		body.state = body.states.POSTHIT
 		for i in 3:
 			var new_soap = SOAP.instantiate()

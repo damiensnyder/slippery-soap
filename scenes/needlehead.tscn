@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkx2vti6ey78n"]
+[gd_scene load_steps=3 format=3 uid="uid://c04266f0p4yg3"]
 
 [ext_resource type="Script" path="res://scripts/needlehead.gd" id="1_wjt4v"]
 [ext_resource type="Texture2D" uid="uid://c4nxfd8iu6v7q" path="res://assets/needlehead_placeholder.png" id="2_a0imn"]
