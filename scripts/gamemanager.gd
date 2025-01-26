@@ -5,36 +5,51 @@ const NEEDLEHEAD = preload("res://scenes/needlehead.tscn")
 const BUBBLE = preload("res://scenes/bubble.tscn")
 
 @onready var launch_seqeunce = $LaunchSeqeunce
-@onready var camera = $Camera2D
-
+@onready var store = $Store
+@onready var ui = $UI
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 func _ready():
-	#Globals.player_position = Vector2(0,300)
-	launch_seqeunce.play()
-	Globals.state = Globals.states.LAUNCH
+	if Globals.first_round == true:
+		launch_seqeunce.play()
+		Globals.first_round = false
+		Globals.state = Globals.states.LAUNCH
 	
-
 func _physics_process(delta):
 	match Globals.state:
 		Globals.states.LAUNCH: launch_state()
 		Globals.states.GAMEPLAY: pass
 		Globals.states.STORE: in_store()
+		Globals.states.TRANSITION_TO_STORE: transition_to_store()
 
 func in_store():
-	pass
+	#just in case delete player if exits
+	var player_check = get_node_or_null("res://scenes/bubble.tscn")
+	if player_check != null:
+		player_check.queue_free()
+	
+	store.fade = true
+	store.in_ = true
+	ui.visible = false
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		Globals.state = Globals.states.LAUNCH
+		launch_seqeunce.play()
+		ui.visible = true
+
+func transition_to_store():
+	#bubble pop and shit
+	Globals.state = Globals.states.STORE
+
 
 func launch_state():
-	if launch_seqeunce.frame == 26:
+	if not launch_seqeunce.is_playing():
 		var new_bubble = BUBBLE.instantiate()
-		new_bubble.position = Vector2(0,650)
-		Globals.player_position = new_bubble.position
+		new_bubble.position = Vector2(0,720)
 		new_bubble.rotation = -PI/2
-		new_bubble.velocity = Vector2(0,-50)
 		add_child(new_bubble)
 
 		Globals.state = Globals.states.GAMEPLAY
-
 
 func _on_soap_spawn_timer_timeout():
 	#safe_spawn(SOAP, "Soaps", 0)
