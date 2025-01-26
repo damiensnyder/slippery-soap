@@ -10,6 +10,8 @@ var max_ammo = 26
 var ammo = max_ammo
 var soap = 300
 var first_round = true
+var ammo_upgrade_lvl = 0
+var shield_uupgrade_lvl = 0
 
 var recoil = 5
 var bullet_speed = 10

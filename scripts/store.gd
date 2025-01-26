@@ -20,8 +20,8 @@ extends Node2D
 ]
 @onready var item_prices = {
 	"_Gun" : [50],
-	"_Shield" : [30, 40, 50],
-	"_Ammo" : [10, 20, 30]
+	"_Shield" : [30, 40, 50, 60],
+	"_Ammo" : [10, 20, 30, 40, 50]
 }
 @onready var shown_item = ""
 var fade_index = 0
@@ -70,7 +70,10 @@ func _process(delta: float) -> void:
 			if Globals.soap >= selected_price and selected_price != 0:
 				print("BUY")
 				Globals.soap -= selected_price
+				selected_sprite.texture = null
 				selected_item = ""
+				description.text = ""
+				price_label.text = ""
 				selected_price = 0
 
 #fuck it im tired im making 6 of these
