@@ -16,11 +16,9 @@ var angular_air_friction = 2.6
 @onready var left_timer = $LeftTimer
 @onready var right_timer = $RightTimer
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity = Vector2(0, 50)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -32,35 +30,41 @@ func _physics_process(delta):
 	var leftgun_direction = Vector2(cos(leftgun_rotation), sin(leftgun_rotation))
 	var rightgun_direction = Vector2(cos(rightgun_rotation), sin(rightgun_rotation))
 	
-	if Input.is_action_just_pressed("shoot left") and left_timer.is_stopped():
-		left_timer.start()
-		shoot(leftgun_direction, direction, left_gun_anim, 1)
+	if Globals.ammo > 0:
+		if Input.is_action_just_pressed("shoot left") and left_timer.is_stopped():
+			left_timer.start()
+			shoot(leftgun_direction, direction, left_gun_anim, 1)
 
-	if Input.is_action_just_pressed("shoot right") and right_timer.is_stopped():
-		right_timer.start()
-		shoot(rightgun_direction, direction, right_gun_anim, -1)
-	
-	if Input.is_action_just_pressed("shoot forward") and left_timer.is_stopped() and right_timer.is_stopped():
-		left_timer.start()
-		right_timer.start()
-		shoot(leftgun_direction, direction, left_gun_anim, 1)
-		shoot(rightgun_direction, direction, right_gun_anim, -1)
+		if Input.is_action_just_pressed("shoot right") and right_timer.is_stopped():
+			right_timer.start()
+			shoot(rightgun_direction, direction, right_gun_anim, -1)
+		
+		if Input.is_action_just_pressed("shoot forward") and left_timer.is_stopped() and right_timer.is_stopped():
+			left_timer.start()
+			right_timer.start()
+			shoot(leftgun_direction, direction, left_gun_anim, 1)
+			shoot(rightgun_direction, direction, right_gun_anim, -1)
 	
 	angular_velocity = clampf(angular_velocity, -0.25, 0.25)
 	velocity += Vector2(0, gravity * 0.0025)
-	# tap moves less, brake moves way less
-	if Input.is_action_pressed("shoot left") or Input.is_action_pressed("shoot right"):
-		velocity = lerp(velocity, Vector2(0, 0), 0.008 * velocity.length() * lateral_air_friction)
-	elif Input.is_action_pressed("brake"):
-		velocity = lerp(velocity, Vector2(0, 0), 0.1 * velocity.length() * lateral_air_friction)
-	else:
-		velocity = lerp(velocity, Vector2(0, 0), 0.015 * velocity.length() * lateral_air_friction)
-	# tap rotates less
-	if Input.is_action_pressed("shoot left") or Input.is_action_pressed("shoot right") or Input.is_action_pressed("shoot forward"):
-		angular_velocity = lerp(angular_velocity, 0.0, 0.008 * angular_air_friction)
+	
+	if Globals.ammo > 0:
+		# tap moves less, brake moves way less
+		if Input.is_action_pressed("shoot left") or Input.is_action_pressed("shoot right"):
+			velocity = lerp(velocity, Vector2(0, 0), 0.008 * velocity.length() * lateral_air_friction)
+		elif Input.is_action_pressed("brake"):
+			velocity = lerp(velocity, Vector2(0, 0), 0.1 * velocity.length() * lateral_air_friction)
+		else:
+			velocity = lerp(velocity, Vector2(0, 0), 0.015 * velocity.length() * lateral_air_friction)
+		# tap rotates less
+		if Input.is_action_pressed("shoot left") or Input.is_action_pressed("shoot right") or Input.is_action_pressed("shoot forward"):
+			angular_velocity = lerp(angular_velocity, 0.0, 0.008 * angular_air_friction)
+		else:
+			angular_velocity = lerp(angular_velocity, 0.0, 0.02 * angular_air_friction)
 	else:
 		angular_velocity = lerp(angular_velocity, 0.0, 0.02 * angular_air_friction)
-	
+		velocity = lerp(velocity, Vector2(0, 0), 0.015 * velocity.length() * lateral_air_friction)
+		
 	rotation += angular_velocity
 	rotation = fmod(rotation + TAU, TAU)
 	var collision = move_and_collide(velocity)
@@ -94,6 +98,7 @@ func debug_controls():
 func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	gun_anim.frame = 0
 	gun_anim.play()
+	Globals.ammo -= 1
 	
 	var new_blullet = BLULLET.instantiate()
 	new_blullet.position = position + 80 * flip * Vector2(own_direction.y, -own_direction.x) - 70 * own_direction

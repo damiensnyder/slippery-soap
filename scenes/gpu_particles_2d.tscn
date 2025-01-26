@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkbgbduktgats"]
 
-[ext_resource type="Texture2D" uid="uid://dx76ysuidm7qa" path="res://assets/blullet1.png" id="1_kr50x"]
+[ext_resource type="Texture2D" uid="uid://bq3pypv7ejaxk" path="res://assets/bullet1.png" id="1_xtxwm"]
 [ext_resource type="Script" path="res://scripts/gpu_particles_2d.gd" id="2_ye5um"]
 
 [sub_resource type="Curve" id="Curve_rl3fw"]
@@ -28,7 +28,7 @@ scale = Vector2(0.2, 0.2)
 emitting = false
 amount = 11
 process_material = SubResource("ParticleProcessMaterial_o522n")
-texture = ExtResource("1_kr50x")
+texture = ExtResource("1_xtxwm")
 one_shot = true
 explosiveness = 1.0
 local_coords = true

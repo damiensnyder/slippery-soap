@@ -28,7 +28,6 @@ func posthit_state():
 	var explosion = bubble_explosion.instantiate()
 	explosion_parent.add_child(explosion)
 	explosion.global_position = self.global_position
-	print(explosion)
 	self.queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

@@ -6,6 +6,8 @@ enum states {LAUNCH, GAMEPLAY}
 var state
 
 var player_position = Vector2(0,0)
+var max_ammo = 20
+var ammo = max_ammo
 
 var recoil = 5
 var bullet_speed = 10
