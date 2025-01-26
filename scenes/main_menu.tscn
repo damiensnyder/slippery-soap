@@ -426,7 +426,7 @@ animations = [{
 
 [node name="Main Menu" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_qvu1c")
-frame_progress = 0.589204
+frame_progress = 0.397715
 script = ExtResource("2_pr21p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -440,12 +440,10 @@ texture = ExtResource("3_jd6ge")
 [node name="LeftGun" type="AnimatedSprite2D" parent="."]
 position = Vector2(-500, 50)
 sprite_frames = SubResource("SpriteFrames_3ew8e")
-frame = 20
 
 [node name="RightGun" type="AnimatedSprite2D" parent="."]
 position = Vector2(500, 50)
 sprite_frames = SubResource("SpriteFrames_ssqqm")
-frame = 20
 flip_h = true
 
 [node name="IntroScenes" type="AnimatedSprite2D" parent="."]

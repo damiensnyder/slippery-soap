@@ -12,6 +12,8 @@ var state = states.MAIN
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	left_gun.pause()
+	right_gun.pause()
 	pass # Replace with function body.
 
 
@@ -25,9 +27,11 @@ func _physics_process(delta):
 func main_state():
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	intro_scenes.modulate.a = lerp(intro_scenes.modulate.a, 0.0, 0.05)
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("next"):
 		state = states.INTROSCENES
 		intro_scenes.frame = 0 #don't think this line is necessary but i dont feel like finding out
+	
+	if Input.is_action_just_pressed("previous"): get_tree().quit()
 	
 	if Input.is_action_just_pressed("shoot left") and not left_gun.is_playing():
 		left_gun.play()
