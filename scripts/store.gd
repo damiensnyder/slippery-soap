@@ -25,14 +25,14 @@ extends Node2D
 @onready var rand_shop_text = [
 	"I'm so tired I feel like popping some bubbles if you knwo what I mean",
 	"Oh my fuck",
-	"Now with candles!!!!!!!!",
+	"You ever been to the you ever do the thing where you have you",
 	"Radiation",
 	"Hold on a second... Have I met you before?",
 	"Don't.. just don't look at me right now please",
 	"Hey hoooooo look at this bubble go!",
 	"AHHHHHHHHHHHHHH",
 	"penis",
-	"Once upon a time there was a... are you going to buy something?",
+	"Once upon a time there was a... damn are you going to buy something?",
 	"Now with 50% more flavor!!"
 ]
 @onready var shop_talker = $Bubble_talk
