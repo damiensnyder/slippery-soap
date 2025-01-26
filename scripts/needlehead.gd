@@ -5,12 +5,15 @@ const SOAP = preload("res://scenes/soap.tscn")
 const SPEED = 2
 const ROTATION_SPEED = 4
 
+var speed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	speed = SPEED
 
 
 func _physics_process(delta):
+	if Globals.ammo == 0: speed = SPEED * 4
 	if (Globals.player_position - position).length() > 1500:
 		return
 	var player_direction = Globals.player_position - position
@@ -18,7 +21,7 @@ func _physics_process(delta):
 	var direction = Vector2(cos(rotation), sin(rotation))
 	
 	rotation = rotate_toward(rotation, angle_to_player, 0.01 * ROTATION_SPEED)
-	velocity = direction * SPEED
+	velocity = direction * speed
 	
 	move_and_collide(velocity)
 

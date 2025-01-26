@@ -60,7 +60,12 @@ func _on_soap_spawn_timer_timeout():
 	pass
 
 func _on_enemy_spawn_timer_timeout():
-	safe_spawn(NEEDLEHEAD, "Enemies", 2000)
+	if Globals.ammo > 0:
+		safe_spawn(NEEDLEHEAD, "Enemies", 2000)
+	else:
+		var new_node = NEEDLEHEAD.instantiate()
+		new_node.position = Globals.player_position + Vector2(0, -900)
+		add_child(new_node)
 	pass
 
 func _on_dodge_blade_spawn_timer_timeout():
