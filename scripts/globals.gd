@@ -11,6 +11,7 @@ var ammo = max_ammo
 var soap = 3000
 var first_round = true
 var ammo_upgrade_lvl = 0
+var ammo_upgrade_tiers = [26, 34, 42, 50, 68, 76] #there r 6 INCLUDING the one u start on
 var shield_upgrade_lvl = 0
 var gun_upgrade_lvl = 0
 
@@ -20,7 +21,6 @@ var lateral_air_friction = 1
 var angular_air_friction = 1
 
 func _ready() -> void:
-	#print(state)
 	pass
 
 func emit_screenshake():
