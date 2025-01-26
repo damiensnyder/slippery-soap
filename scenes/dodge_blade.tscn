@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw03hjnjjb10h"]
+
+[ext_resource type="Texture2D" uid="uid://dlnhnuojnkktp" path="res://assets/dodge-blade.png" id="1_2c0ho"]
+[ext_resource type="Script" path="res://dodge_blade.gd" id="1_8ow4r"]
+
+[node name="DodgeBlade" type="CharacterBody2D" groups=["Dodge Blades"]]
+scale = Vector2(0.6, 0.6)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_8ow4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(18.8333, 64.0667)
+texture = ExtResource("1_2c0ho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(18.8333, 64.0667)
+polygon = PackedVector2Array(-134, 31, -48, -81, 55, -33, 98, -44, 111, -111, 90, -132, 72, -237, -33, -195, -106, -88, -124, -74, -144, -17)
+
+[node name="Area2D" type="Area2D" parent="." groups=["Dodge Blades"]]
+position = Vector2(18.8333, 64.0667)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-134, 31, -48, -81, 55, -33, 98, -44, 111, -111, 90, -132, 72, -237, -33, -195, -106, -88, -124, -74, -144, -17)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_blade_body_entered"]

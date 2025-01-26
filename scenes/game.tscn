@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dc3xexybcvyms" path="res://scenes/wall.tscn" id="2_iddn8"]
 [ext_resource type="Script" path="res://scripts/debug_movement_settings.gd" id="4_ap0ag"]
 [ext_resource type="PackedScene" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
-[ext_resource type="Texture2D" uid="uid://ctip2v5meq0de" path="res://assets/background.png" id="6_uoxb7"]
-[ext_resource type="Texture2D" uid="uid://ky71gmc3hp7m" path="res://assets/background_upper.jpg" id="7_jy0yt"]
-[ext_resource type="Texture2D" uid="uid://cvh8jufdkf80h" path="res://assets/launch_sheet.png" id="7_ytvbr"]
+[ext_resource type="Texture2D" uid="uid://bq80orxxfim7r" path="res://assets/background.png" id="6_uoxb7"]
+[ext_resource type="Texture2D" uid="uid://dfegya3fh6hbs" path="res://assets/background_upper.jpg" id="7_jy0yt"]
+[ext_resource type="Texture2D" uid="uid://c33nmvg3tpge0" path="res://assets/launch_sheet.png" id="7_ytvbr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d77et"]
 atlas = ExtResource("7_ytvbr")
@@ -274,5 +274,10 @@ position = Vector2(0, -10800)
 texture = ExtResource("7_jy0yt")
 flip_v = true
 
+[node name="DodgeBladeSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="timeout" from="SoapSpawnTimer" to="." method="_on_soap_spawn_timer_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="DodgeBladeSpawnTimer" to="." method="_on_dodge_blade_spawn_timer_timeout"]
