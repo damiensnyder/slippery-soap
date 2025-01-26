@@ -18,7 +18,7 @@ extends Node2D
 @onready var selected_buy = false
 @onready var selected_price = 0
 @onready var item_text = [
-	"Gun: Upgrade them gunz",
+	"Gun: Upgrade them gunz, homing projectiles",
 	"Shield: Get some much needed protection",
 	"Ammo: Increase your sweet sweet ammo"
 ]
