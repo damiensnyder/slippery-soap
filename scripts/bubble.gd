@@ -30,7 +30,7 @@ func _physics_process(delta):
 	debug_controls()
 	
 	if is_popped:
-		velocity += Vector2(0, 0.15)
+		velocity += Vector2(0, 0.2)
 		var collision = move_and_collide(velocity)
 		Globals.player_position = position
 		if collision and collision.get_collider().has_method("is_wall"):
