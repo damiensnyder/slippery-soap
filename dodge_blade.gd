@@ -11,7 +11,6 @@ var original_rotation = 0
 func _ready():
 	original_rotation = get_angle_to(Globals.player_position) + randf_range(-0.7, 0.7)
 	rotation = original_rotation
-	print("hi")
 	if randi() == 0:
 		rotation_speed *= -1
 
