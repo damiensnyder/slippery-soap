@@ -18,6 +18,8 @@ var is_popped = false
 @onready var right_timer = $RightTimer
 @onready var floating_sprite: AnimatedSprite2D = $Sprite2D
 @onready var popped_sprite: Sprite2D = $popped
+@onready var left_gun = $LeftGun
+@onready var right_gun = $RightGun
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +32,11 @@ func _physics_process(delta):
 	debug_controls()
 	
 	if is_popped:
+		angular_velocity = 0
+		rotation += 0.05
+		left_gun.rotation += 0.05
+		right_gun.rotation += 0.05
+		
 		velocity += Vector2(0, 0.2)
 		var collision = move_and_collide(velocity)
 		Globals.player_position = position

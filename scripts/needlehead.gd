@@ -13,7 +13,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Globals.ammo == 0: speed = SPEED * 4
+	if Globals.ammo <= 0: speed = SPEED * 4
 	if (Globals.player_position - position).length() > 1500:
 		return
 	var player_direction = Globals.player_position - position
