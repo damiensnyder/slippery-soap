@@ -8,6 +8,8 @@ const BUBBLE = preload("res://scenes/bubble.tscn")
 @onready var store = $Store
 @onready var ui = $UI
 @onready var camera = $Camera2D
+@onready var once = true #fuck it sorry
+@onready var poopy = false #sorry again, this is for instore()
 const DODGE_BLADE = preload("res://scenes/dodge_blade.tscn")
 
 func _ready():
@@ -29,14 +31,20 @@ func in_store():
 	if player_check != null:
 		player_check.queue_free()
 	
-	store.fade = true
-	store.in_ = true
-	ui.visible = false
+	if once == true: #fuck it
+		store.fade = true
+		store.in_ = true
+		ui.visible = false
+		once = false
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		Globals.state = Globals.states.LAUNCH
-		launch_seqeunce.play()
-		ui.visible = true
+		store.fade = true
+		store.in_ = false
+		poopy = true
+	if store.fade_index <= 0 and poopy == true:
+			Globals.state = Globals.states.LAUNCH
+			launch_seqeunce.play()
+			ui.visible = true
 	pass
 
 func transition_to_store():
@@ -45,6 +53,8 @@ func transition_to_store():
 
 
 func launch_state():
+	once = true #for fading in shop, i lazy rn
+	poopy = false #ahhh
 	if launch_seqeunce.frame == 26:
 		var new_bubble = BUBBLE.instantiate()
 		new_bubble.position = Vector2(0,650)

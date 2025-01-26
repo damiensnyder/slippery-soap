@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://di07krsocukfl"]
+[gd_scene load_steps=18 format=3 uid="uid://di07krsocukfl"]
 
 [ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/store.png" id="1_rfmim"]
 [ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
 [ext_resource type="Texture2D" uid="uid://bbjy1gfg2uwsb" path="res://assets/store_gun.png" id="3_0bbg6"]
+[ext_resource type="Texture2D" uid="uid://bbvj6chcllcty" path="res://assets/soap_placeholder.png" id="3_i5a1i"]
 [ext_resource type="Texture2D" uid="uid://ct0a52vtloxhm" path="res://assets/bubble_guy.png" id="3_xw6xs"]
 [ext_resource type="Texture2D" uid="uid://bmwvgy6ybuai2" path="res://assets/store_shield.png" id="4_ta8tn"]
 [ext_resource type="Texture2D" uid="uid://rqypxlvxtnpa" path="res://assets/store_ammo.png" id="6_nbk2x"]
@@ -59,17 +60,34 @@ size = Vector2(196, 144)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sls0t"]
 size = Vector2(160, 223)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8chmr"]
+size = Vector2(244, 166)
+
 [node name="Store" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_rwmah")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("1_rfmim")
 
+[node name="SoapSprite" type="Sprite2D" parent="."]
+position = Vector2(102, 78)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_i5a1i")
+
+[node name="SoapText" type="RichTextLabel" parent="."]
+offset_left = 186.0
+offset_top = 44.0
+offset_right = 386.0
+offset_bottom = 111.0
+theme_override_font_sizes/normal_font_size = 36
+
 [node name="Shopkeep" type="AnimatedSprite2D" parent="."]
 position = Vector2(662, 418)
 scale = Vector2(0.907767, 0.907767)
 sprite_frames = SubResource("SpriteFrames_oiqal")
+autoplay = "default"
 frame = 3
 frame_progress = 0.58816
 
@@ -103,9 +121,34 @@ texture = ExtResource("6_nbk2x")
 position = Vector2(-3, -16.5)
 shape = SubResource("RectangleShape2D_sls0t")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1464.0
+offset_top = 547.0
+offset_right = 1796.0
+offset_bottom = 713.0
+theme_override_font_sizes/normal_font_size = 36
+
+[node name="Buy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buy"]
+position = Vector2(1632, 860)
+shape = SubResource("RectangleShape2D_8chmr")
+
+[node name="SelectedSprite" type="Sprite2D" parent="."]
+position = Vector2(1615, 277)
+
+[node name="PriceLabel" type="RichTextLabel" parent="."]
+offset_left = 1430.0
+offset_top = 376.0
+offset_right = 1813.0
+offset_bottom = 488.0
+theme_override_font_sizes/normal_font_size = 36
+
 [connection signal="mouse_entered" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Gun/GunArea2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Shield/ShieldArea2D" to="." method="_on_shield_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="Ammo/AmmoArea2D" to="." method="_on_ammo_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Ammo/AmmoArea2D" to="." method="_on_ammo_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Buy" to="." method="_on_buy_mouse_entered"]
+[connection signal="mouse_exited" from="Buy" to="." method="_on_buy_mouse_exited"]
