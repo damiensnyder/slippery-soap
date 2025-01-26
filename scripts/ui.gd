@@ -10,16 +10,20 @@ extends CanvasLayer
 var ammo_check = Globals.ammo
 
 func _ready() -> void:
-	for i in Globals.ammo:
+	for p in Globals.ammo:
 		var new_ammo_sprite = Sprite2D.new()
 		new_ammo_sprite.texture = AMMOSPRITE
-		new_ammo_sprite.global_position.y = ammo_origin.global_position.y
-		new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * i)
+		if p > max_ammo_in_line:
+			new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 40
+			new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line+1)))
+		else:
+			new_ammo_sprite.global_position.y = ammo_origin.global_position.y
+			new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * p)
 		new_ammo_sprite.scale = Vector2(0.3,0.3)
 		ammo_array.push_back(new_ammo_sprite)
 		add_child(new_ammo_sprite)
-		
-		i += 1
+
+		p += 1
 
 func _physics_process(delta: float) -> void:
 	soap_text.text = "= " + str(Globals.soap)

@@ -50,6 +50,13 @@ func _process(delta: float) -> void:
 		elif in_ == false and fade_index > 0:
 			self.modulate.a = fade_index
 			fade_index -= fade_speed
+		#persistant sold out signs
+		if Globals.ammo_upgrade_lvl >= item_prices["_Ammo"].size():
+			ammo_sprite.texture = sold_out	
+		if Globals.shield_upgrade_lvl >= item_prices["_Shield"].size():
+			shield_sprite.texture = sold_out
+		if Globals.gun_upgrade_lvl >= item_prices["_Gun"].size():
+			gun_sprite.texture = sold_out
 
 	if Input.is_action_just_pressed("click") and fade_index >= 1:
 		match selected_item:
