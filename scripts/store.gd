@@ -43,12 +43,12 @@ func _process(delta: float) -> void:
 		if in_ == true and fade_index < 1:
 			self.modulate.a = fade_index
 			fade_index += fade_speed
-			print(fade_index)
 		elif in_ == false and fade_index > 0:
 			self.modulate.a = fade_index
 			fade_index -= fade_speed
 
 	if Input.is_action_just_pressed("click") and fade_index >= 1:
+		print(item_prices["_Ammo"].size())
 		match selected_item:
 			"": pass
 			"Gun": 
@@ -58,17 +58,25 @@ func _process(delta: float) -> void:
 				selected_sprite.texture = gun
 			"Shield":
 				description.text = item_text[1]
-				price_label.text = "Price: " + str(item_prices["_Shield"][0])
+				price_label.text = "Price: " + str(item_prices["_Shield"][Globals.shield_upgrade_lvl])
 				selected_price = item_prices["_Shield"][0]
 				selected_sprite.texture = shield
 			"Ammo": 
 				description.text = item_text[2]
-				price_label.text = "Price: " + str(item_prices["_Ammo"][0])
+				price_label.text = "Price: " + str(item_prices["_Ammo"][Globals.ammo_upgrade_lvl])
 				selected_price = item_prices["_Ammo"][0]
 				selected_sprite.texture = ammo
 		if selected_buy:
 			if Globals.soap >= selected_price and selected_price != 0:
-				print("BUY")
+				match selected_sprite.texture: #upgrades
+					ammo:
+						if Globals.ammo_upgrade_lvl + 1 <= item_prices["_Ammo"].size():
+							#if there's another upgrade
+							Globals.ammo_upgrade_lvl += 1
+					shield:
+						if Globals.shield_upgrade_lvl + 1 <= item_prices["_Shield"].size():
+							#if there's another upgrade
+							Globals.shield_upgrade_lvl += 1
 				Globals.soap -= selected_price
 				selected_sprite.texture = null
 				selected_item = ""
