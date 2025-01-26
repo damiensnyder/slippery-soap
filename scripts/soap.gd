@@ -33,6 +33,7 @@ func life_state():
 	global_position = lerp(global_position, player.global_position, lerp_speed)
 
 func death_state():
+	Globals.soap += 1
 	queue_free()
 
 func _on_area_2d_body_entered(body):
