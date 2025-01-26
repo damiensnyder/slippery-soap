@@ -11,6 +11,7 @@ var bullet_speed = 10
 var lateral_air_friction = 0.6
 var angular_air_friction = 2.6
 var is_popped = false
+var shields = 0
 
 @onready var left_gun_anim = $LeftGun/LeftGunAnim
 @onready var right_gun_anim = $RightGun/RightGunAnim
@@ -18,6 +19,7 @@ var is_popped = false
 @onready var right_timer = $RightTimer
 @onready var floating_sprite: AnimatedSprite2D = $Sprite2D
 @onready var popped_sprite: Sprite2D = $popped
+@onready var shield_sprite = $RightGun
 @onready var left_gun = $LeftGun
 @onready var right_gun = $RightGun
 
@@ -26,6 +28,7 @@ func _ready():
 	# velocity = Vector2(0, -50)
 	floating_sprite.visible = true
 	popped_sprite.visible = false
+	shields = Globals.shield_upgrade_lvl
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -157,13 +160,19 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Dodge Blades") or body.is_in_group("Enemies"):
-		Globals.ammo = 0
-		floating_sprite.visible = false
-		popped_sprite.visible = true
-		is_popped = true
-		if not AudioSuite.scream_player.playing:
-			AudioSuite.scream_player.play()
-			AudioSuite.pop_player.play()
+		if shields > 0:
+			shields -= 1
+			if shields == 0:
+				pass # shield_sprite.visible = false
+			body.queue_free()
+		else:
+			Globals.ammo = 0
+			floating_sprite.visible = false
+			popped_sprite.visible = true
+			is_popped = true
+			if not AudioSuite.scream_player.playing:
+				AudioSuite.scream_player.play()
+				AudioSuite.pop_player.play()
 
 
 func is_bubble():
