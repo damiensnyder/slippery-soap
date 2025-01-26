@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var AMMOSPRITE = preload("res://assets/bullet1.png")
 @onready var ammo_origin = $AmmoPlace
+@onready var soap_text = $SoapCounter
 #@onready var current_ammo = Globals.ammo
 @onready var ammo_size = 40 #hardcoding sowwy
 @onready var ammo_array = []
@@ -20,6 +21,7 @@ func _ready() -> void:
 		i += 1
 
 func _process(delta: float) -> void:
+	soap_text.text = "= " + str(Globals.soap)
 	if ammo_check != Globals.ammo:
 		#print(ammo_array.size())
 		if ammo_check > Globals.ammo: #decrease ammo

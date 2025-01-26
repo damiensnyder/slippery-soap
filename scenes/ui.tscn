@@ -14,9 +14,11 @@ texture = ExtResource("1_8huvg")
 [node name="AmmoPlace" type="Node2D" parent="."]
 position = Vector2(43, 1042)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 211.0
-offset_top = 51.0
-offset_right = 525.0
-offset_bottom = 77.0
+[node name="SoapCounter" type="RichTextLabel" parent="."]
+offset_left = 171.0
+offset_top = 35.0
+offset_right = 487.0
+offset_bottom = 116.0
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
 text = "Pooooooop"
