@@ -134,19 +134,23 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	
 	AudioSuite.gunshot_player.play()
 	
-	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var enemies = get_tree().get_nodes_in_group("Enemies") + get_tree().get_nodes_in_group("Dodge Blades")
 	var best_angle = 100
 	var average_gun_position = position - 30 * own_direction
 	for enemy in enemies:
-		var angle_to_enemy = average_gun_position.angle_to_point(enemy.position) - rotation
-		while angle_to_enemy > PI:
-			angle_to_enemy -= TAU
-		while angle_to_enemy < -PI:
-			angle_to_enemy += TAU
-		if abs(angle_to_enemy) < abs(best_angle - rotation) and enemy.position.length() > 0 and not enemy.is_queued_for_deletion():
-			best_angle = angle_to_enemy
+		if (enemy.position - position).length() < 800:
+			var angle_to_enemy = average_gun_position.angle_to_point(enemy.position) - rotation
+			while angle_to_enemy > PI:
+				angle_to_enemy -= TAU
+			while angle_to_enemy < -PI:
+				angle_to_enemy += TAU
+			if abs(angle_to_enemy) < abs(best_angle - rotation) and enemy.position.length() > 0 and not enemy.is_queued_for_deletion():
+				best_angle = angle_to_enemy
 	new_blullet.velocity = -gun_direction * bullet_speed
-	if abs(PI - abs(best_angle)) < PI / 8:
+	var threshold = PI / 8
+	if Globals.gun_upgrade_lvl > 0:
+		threshold = PI / 3
+	if abs(PI - abs(best_angle)) < threshold:
 		new_blullet.velocity = gun_direction.rotated(best_angle) * bullet_speed
 	
 	get_node("/root/GameManager").add_child(new_blullet)
