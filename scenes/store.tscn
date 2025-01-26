@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=3 format=3 uid="uid://bg73d0smfld5j"]
 
 [ext_resource type="Script" path="res://scenes/store.gd" id="1_k27wk"]
@@ -5,6 +6,13 @@
 
 [node name="Store" type="Node2D"]
 script = ExtResource("1_k27wk")
+=======
+[gd_scene load_steps=2 format=3 uid="uid://cncbj1qcedqjw"]
+
+[ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/unnamed.png" id="1_wdo0h"]
+
+[node name="Store" type="Node2D"]
+>>>>>>> Stashed changes
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

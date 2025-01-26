@@ -2,7 +2,11 @@ extends Node2D
 
 signal shake_screen()
 
+<<<<<<< Updated upstream
 enum states {LAUNCH, GAMEPLAY, STORE, TRANSITION_TO_STORE}
+=======
+enum states {LAUNCH, GAMEPLAY, STORE}
+>>>>>>> Stashed changes
 var state
 
 var player_position = Vector2(0,0)

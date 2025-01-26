@@ -20,6 +20,7 @@ func _physics_process(delta):
 		Globals.states.LAUNCH: launch_state()
 		Globals.states.GAMEPLAY: pass
 		Globals.states.STORE: in_store()
+<<<<<<< Updated upstream
 		Globals.states.TRANSITION_TO_STORE: transition_to_store()
 
 func in_store():
@@ -40,6 +41,11 @@ func in_store():
 func transition_to_store():
 	#bubble pop and shit
 	Globals.state = Globals.states.STORE
+=======
+
+func in_store():
+	pass
+>>>>>>> Stashed changes
 
 func launch_state():
 	if not launch_seqeunce.is_playing():
