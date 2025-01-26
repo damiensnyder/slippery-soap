@@ -275,7 +275,6 @@ texture = ExtResource("7_jy0yt")
 flip_v = true
 
 [node name="DodgeBladeSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="SoapSpawnTimer" to="." method="_on_soap_spawn_timer_timeout"]

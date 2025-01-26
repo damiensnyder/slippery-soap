@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c4nxfd8iu6v7q" path="res://assets/needlehead_placeholder.png" id="2_a0imn"]
 
 [node name="Needlehead" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_wjt4v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,8 +17,8 @@ rotation = 1.5708
 polygon = PackedVector2Array(-7, -10, 10, -96, 21, -8, 62, 22, 62, 71, 31, 91, -27, 93, -65, 52, -67, 19, -40, -1)
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemies"]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 rotation = 1.5708
