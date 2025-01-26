@@ -38,8 +38,8 @@ extends Node2D
 @onready var shop_talker = $Bubble_talk
 @onready var item_prices = {
 	"_Gun" : [50],
-	"_Shield" : [30, 40, 50, 60],
-	"_Ammo" : [10, 20, 30, 40, 50]
+	"_Shield" : [30, 35, 40, 45, 50],
+	"_Ammo" : [10, 15, 20, 25, 30, 35, 40, 45, 50]
 }
 @onready var shown_item = ""
 var fade_index = 0
