@@ -13,6 +13,7 @@ var first_round = true
 var ammo_upgrade_lvl = 0
 var ammo_upgrade_tiers = [26, 36, 46, 54, 72, 84] #there r 6 INCLUDING the one u start on
 var shield_upgrade_lvl = 0
+var shield = 0 #shield_upgrade_lvl serves as a max shields, "shield" is how many there are currently
 var gun_upgrade_lvl = 0
 
 var recoil = 5
