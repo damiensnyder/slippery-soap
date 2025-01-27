@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bowvmmeel466u"]
+[gd_scene load_steps=3 format=3 uid="uid://clsekfb1qekye"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_op1fp"]
-[ext_resource type="Texture2D" uid="uid://h5udjka2loxq" path="res://assets/soap_purple.png" id="2_dhalc"]
+[ext_resource type="Texture2D" uid="uid://ct8apwq5uib23" path="res://assets/soap_purple.png" id="2_dhalc"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_op1fp")
@@ -22,3 +22,12 @@ offset_bottom = 116.0
 theme_override_font_sizes/normal_font_size = 46
 bbcode_enabled = true
 text = "Pooooooop"
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(48, 203)
+points = PackedVector2Array(2, 8, 1.99998, 402.703, 2, 613)
+width = 6.0
+default_color = Color(1, 0.592157, 1, 1)
+
+[node name="PlayerMarkerStart" type="Node2D" parent="."]
+position = Vector2(50, 816)
