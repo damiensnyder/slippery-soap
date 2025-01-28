@@ -1,18 +1,19 @@
-[gd_scene load_steps=43 format=3 uid="uid://j52wuru68873"]
+[gd_scene load_steps=44 format=3 uid="uid://j52wuru68873"]
 
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_1ll71"]
 [ext_resource type="PackedScene" uid="uid://dc3xexybcvyms" path="res://scenes/wall.tscn" id="2_iddn8"]
 [ext_resource type="Script" path="res://scripts/debug_movement_settings.gd" id="4_ap0ag"]
-[ext_resource type="PackedScene" uid="uid://dpbokwsp118f0" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
-[ext_resource type="Texture2D" uid="uid://4ccyeputv43f" path="res://assets/background.png" id="6_uoxb7"]
-[ext_resource type="Texture2D" uid="uid://cw251tdy10v7i" path="res://assets/background_upper.jpg" id="7_jy0yt"]
-[ext_resource type="Texture2D" uid="uid://l3wda5jdhj5p" path="res://assets/launch_sheet.png" id="7_ytvbr"]
-[ext_resource type="PackedScene" uid="uid://clsekfb1qekye" path="res://scenes/ui.tscn" id="8_nuht8"]
-[ext_resource type="PackedScene" uid="uid://di07krsocukfl" path="res://scenes/store.tscn" id="9_0d5ux"]
+[ext_resource type="PackedScene" path="res://scenes/custom_camera.tscn" id="5_hdpcy"]
+[ext_resource type="Texture2D" uid="uid://ctip2v5meq0de" path="res://assets/background.png" id="6_uoxb7"]
+[ext_resource type="Texture2D" uid="uid://ky71gmc3hp7m" path="res://assets/background_upper.jpg" id="7_jy0yt"]
+[ext_resource type="Texture2D" uid="uid://cvh8jufdkf80h" path="res://assets/launch_sheet.png" id="7_ytvbr"]
+[ext_resource type="PackedScene" uid="uid://bowvmmeel466u" path="res://scenes/ui.tscn" id="8_nuht8"]
+[ext_resource type="PackedScene" uid="uid://dprle8qeylhe5" path="res://scenes/store.tscn" id="9_0d5ux"]
 [ext_resource type="Script" path="res://scripts/finish_line.gd" id="10_e7pxu"]
-[ext_resource type="Texture2D" uid="uid://dy8ju43vl6f8w" path="res://assets/white_square.png" id="11_cbhv8"]
-[ext_resource type="Texture2D" uid="uid://frypqxn26i87" path="res://assets/background_top.jpg" id="12_ondp6"]
-[ext_resource type="Texture2D" uid="uid://b7d4lh8g5bw5s" path="res://assets/space_to_launch.png" id="13_rlwk1"]
+[ext_resource type="Texture2D" uid="uid://bwypn7r4ptlu0" path="res://assets/white_square.png" id="11_cbhv8"]
+[ext_resource type="Texture2D" uid="uid://ch26dlp65thx" path="res://assets/background_top.jpg" id="12_ondp6"]
+[ext_resource type="Texture2D" uid="uid://bh4rekui2cneo" path="res://assets/space_to_launch.png" id="13_rlwk1"]
+[ext_resource type="Texture2D" uid="uid://cbuxvrjkhm0mt" path="res://assets/gun_store.png" id="14_eilfr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3voes"]
 atlas = ExtResource("7_ytvbr")
@@ -253,12 +254,6 @@ offset_bottom = -389.0
 theme_override_font_sizes/font_size = 90
 script = ExtResource("4_ap0ag")
 
-[node name="Curtain" type="Sprite2D" parent="."]
-modulate = Color(0.376471, 0.376471, 0.376471, 0)
-z_index = 10
-scale = Vector2(20, 20)
-texture = ExtResource("11_cbhv8")
-
 [node name="LaunchSeqeunce" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 720)
 scale = Vector2(0.25, 0.25)
@@ -295,17 +290,30 @@ modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(0, 391)
 texture = ExtResource("13_rlwk1")
 
+[node name="GunStoreSprite" type="Sprite2D" parent="."]
+position = Vector2(463.5, 535.5)
+scale = Vector2(0.71205, 0.713642)
+texture = ExtResource("14_eilfr")
+
 [node name="Camera2D" parent="." instance=ExtResource("5_hdpcy")]
-position = Vector2(2, 418)
+position = Vector2(0, 418)
 limit_left = -1920
 limit_top = -11880
 limit_right = 1920
 limit_bottom = 960
 
+[node name="Curtain" type="Sprite2D" parent="Camera2D"]
+modulate = Color(0.376471, 0.376471, 0.376471, 0)
+z_index = 10
+position = Vector2(0, -418)
+scale = Vector2(20, 20)
+texture = ExtResource("11_cbhv8")
+
 [node name="DodgeBladeSpawnTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource("8_nuht8")]
+visible = false
 
 [node name="Store" parent="." instance=ExtResource("9_0d5ux")]
 position = Vector2(-958, -122)

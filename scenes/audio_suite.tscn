@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhfpt03g0wjv3"]
+[gd_scene load_steps=16 format=3 uid="uid://dhfpt03g0wjv3"]
 
 [ext_resource type="Script" path="res://scripts/audio_suite.gd" id="1_001av"]
 [ext_resource type="AudioStream" uid="uid://do3jrqn2ueqm7" path="res://assets/ahhh1.wav" id="1_3b7h6"]
@@ -12,46 +12,59 @@
 [ext_resource type="AudioStream" uid="uid://b7iidrb6kyvuy" path="res://assets/ammo.wav" id="8_bc32b"]
 [ext_resource type="AudioStream" uid="uid://dr5hi6e4171uy" path="res://assets/launch.wav" id="11_422l8"]
 [ext_resource type="AudioStream" uid="uid://dsmare8gutt7n" path="res://assets/shop-theme.mp3" id="12_5n8hr"]
+[ext_resource type="AudioStream" uid="uid://b6cbn2810ubjn" path="res://assets/victorytheme.wav" id="13_oe2ml"]
+[ext_resource type="AudioStream" uid="uid://uht23rs83llp" path="res://assets/ohno2.wav" id="14_cxdgx"]
+[ext_resource type="AudioStream" uid="uid://c26iihnx67bqn" path="res://assets/no_ammo.wav" id="15_80bc2"]
 
 [node name="AudioSuite" type="Node2D"]
 script = ExtResource("1_001av")
 
-[node name="ScreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ScreamPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("1_3b7h6")
 volume_db = -10.0
 
 [node name="OuchPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_4h0c3")
 
-[node name="PopPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PopPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("4_641k5")
 
-[node name="GunshotPlayer" type="AudioStreamPlayer" parent="."]
+[node name="GunshotPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("5_07x6k")
-max_polyphony = 6
 
-[node name="LoudGunshotPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LoudGunshotPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("6_fierc")
-volume_db = -15.0
-max_polyphony = 6
+volume_db = -18.0
 
-[node name="PshewPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PshewPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("6_lcb1x")
+volume_db = 5.0
 max_polyphony = 3
 
-[node name="DingPlayer" type="AudioStreamPlayer" parent="."]
+[node name="DingPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("7_3jp47")
 max_polyphony = 3
 
-[node name="AmmoPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AmmoPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("8_bc32b")
-volume_db = 10.0
 
-[node name="ChaChingPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ChaChingPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("8_7ehl6")
 
-[node name="LaunchPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LaunchPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("11_422l8")
+volume_db = -3.0
 
-[node name="ShopThemePlayer" type="AudioStreamPlayer" parent="."]
+[node name="ShopThemePlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
 stream = ExtResource("12_5n8hr")
+
+[node name="VictoryThemePlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
+stream = ExtResource("13_oe2ml")
+
+[node name="OhNoPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
+stream = ExtResource("14_cxdgx")
+volume_db = -5.0
+
+[node name="DryFirePlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayers"]]
+stream = ExtResource("15_80bc2")
+volume_db = -9.0

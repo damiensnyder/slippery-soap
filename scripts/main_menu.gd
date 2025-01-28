@@ -14,6 +14,7 @@ var state = states.MAIN
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().call_group("AudioPlayers", "stop")
 	left_gun.pause()
 	right_gun.pause()
 	pass # Replace with function body.
@@ -65,6 +66,8 @@ func introscenes_state():
 
 func out_state():
 	curtain.modulate.a = lerp(curtain.modulate.a, 1.0, 0.05)
-	if curtain.modulate.a > 0.99:
-		intro_scenes.modulate.a = 0.0
+	if curtain.modulate.a == 1:
 		get_tree().change_scene_to_file("res://scenes/game.tscn")
+	if curtain.modulate.a > 0.99:
+		curtain.modulate.a = 1
+		intro_scenes.modulate.a = 0.0

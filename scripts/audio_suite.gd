@@ -11,3 +11,6 @@ extends Node2D
 @onready var chaching_player = $ChaChingPlayer
 @onready var launch_player = $LaunchPlayer
 @onready var shop_theme_player = $ShopThemePlayer
+@onready var victory_theme_player = $VictoryThemePlayer
+@onready var oh_no_player = $OhNoPlayer
+@onready var dry_fire_player = $DryFirePlayer

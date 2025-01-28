@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://di07krsocukfl"]
+[gd_scene load_steps=20 format=3 uid="uid://dprle8qeylhe5"]
 
-[ext_resource type="Texture2D" uid="uid://dec14h20ctraj" path="res://assets/store.png" id="1_rfmim"]
+[ext_resource type="Texture2D" uid="uid://cdnk8tdnj34tq" path="res://assets/store.png" id="1_rfmim"]
 [ext_resource type="Script" path="res://scripts/store.gd" id="1_rwmah"]
-[ext_resource type="Texture2D" uid="uid://bbjy1gfg2uwsb" path="res://assets/store_gun.png" id="3_0bbg6"]
-[ext_resource type="Texture2D" uid="uid://ct8apwq5uib23" path="res://assets/soap_purple.png" id="3_0elw6"]
-[ext_resource type="Texture2D" uid="uid://ct0a52vtloxhm" path="res://assets/bubble_guy.png" id="3_xw6xs"]
-[ext_resource type="Texture2D" uid="uid://bmwvgy6ybuai2" path="res://assets/store_shield.png" id="4_ta8tn"]
-[ext_resource type="Texture2D" uid="uid://rqypxlvxtnpa" path="res://assets/store_ammo.png" id="6_nbk2x"]
-[ext_resource type="Texture2D" uid="uid://6dohewg2xk35" path="res://assets/buy.png" id="8_eqs1o"]
+[ext_resource type="Texture2D" uid="uid://b6ktn3jvhrtsg" path="res://assets/store_gun.png" id="3_0bbg6"]
+[ext_resource type="Texture2D" uid="uid://h5udjka2loxq" path="res://assets/soap_purple.png" id="3_0elw6"]
+[ext_resource type="Texture2D" uid="uid://w1b54q8i3dap" path="res://assets/bubble_guy.png" id="3_xw6xs"]
+[ext_resource type="FontFile" uid="uid://bwvw4fg1fd32a" path="res://assets/toscuchet.otf" id="4_sauku"]
+[ext_resource type="Texture2D" uid="uid://roicrop1n8mu" path="res://assets/store_shield.png" id="4_ta8tn"]
+[ext_resource type="Texture2D" uid="uid://duptgtob3opgb" path="res://assets/store_ammo.png" id="6_nbk2x"]
+[ext_resource type="Texture2D" uid="uid://csjb5da81nc06" path="res://assets/buy.png" id="8_eqs1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c1xv"]
 atlas = ExtResource("3_xw6xs")
@@ -73,16 +74,17 @@ position = Vector2(960, 540)
 texture = ExtResource("1_rfmim")
 
 [node name="SoapSprite" type="Sprite2D" parent="."]
-position = Vector2(102, 78)
+position = Vector2(90, 70)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_0elw6")
 
 [node name="SoapText" type="RichTextLabel" parent="."]
-offset_left = 186.0
-offset_top = 44.0
-offset_right = 386.0
-offset_bottom = 111.0
-theme_override_font_sizes/normal_font_size = 36
+offset_left = 169.0
+offset_top = 35.0
+offset_right = 485.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("4_sauku")
+theme_override_font_sizes/normal_font_size = 46
 
 [node name="Shopkeep" type="AnimatedSprite2D" parent="."]
 position = Vector2(662, 418)
@@ -124,9 +126,10 @@ shape = SubResource("RectangleShape2D_sls0t")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 1464.0
-offset_top = 547.0
+offset_top = 572.0
 offset_right = 1796.0
-offset_bottom = 713.0
+offset_bottom = 738.0
+theme_override_fonts/normal_font = ExtResource("4_sauku")
 theme_override_font_sizes/normal_font_size = 36
 
 [node name="Buy" type="Area2D" parent="."]
@@ -139,10 +142,11 @@ shape = SubResource("RectangleShape2D_8chmr")
 position = Vector2(1615, 277)
 
 [node name="PriceLabel" type="RichTextLabel" parent="."]
-offset_left = 1532.0
+offset_left = 1556.0
 offset_top = 379.0
-offset_right = 1813.0
+offset_right = 1837.0
 offset_bottom = 488.0
+theme_override_fonts/normal_font = ExtResource("4_sauku")
 theme_override_font_sizes/normal_font_size = 36
 
 [node name="BuySprite" type="Sprite2D" parent="."]
@@ -155,6 +159,7 @@ offset_left = 999.0
 offset_top = 456.0
 offset_right = 1339.0
 offset_bottom = 677.0
+theme_override_fonts/normal_font = ExtResource("4_sauku")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 

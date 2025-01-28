@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	elif Globals.state != Globals.states.STORE and AudioSuite.shop_theme_player.playing:
 		AudioSuite.shop_theme_player.stop()
 	
-	soap_text.text = "= " + str(Globals.soap)
+	soap_text.text = "" + str(Globals.soap)
 	if fade == true:
 		if in_ == true and fade_index < 1:
 			self.modulate.a = fade_index

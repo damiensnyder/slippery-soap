@@ -10,7 +10,9 @@ func _on_body_entered(body):
 
 func _physics_process(delta):
 	if Globals.state == Globals.states.WIN:
-		curtain.modulate.a = lerp(curtain.modulate.a, 1.0, 0.05)
-		if curtain.modulate.a > 0.99:
+		if curtain.modulate.a == 1:
 			Globals.state = Globals.states.PRELAUNCH
 			get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
+		curtain.modulate.a = lerp(curtain.modulate.a, 1.0, 0.05)
+		if curtain.modulate.a > 0.99:
+			curtain.modulate.a = 1

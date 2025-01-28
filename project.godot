@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="slippery slope"
+config/name="PeachsGuns"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+config/macos_native_icon="res://assets/peach_head.icns"
+config/windows_native_icon="res://assets/peach_head.ico"
 
 [autoload]
 
@@ -35,6 +37,7 @@ Walls=""
 Enemies=""
 Soaps=""
 Supporters=""
+AudioPlayers=""
 
 [input]
 

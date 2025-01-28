@@ -10,21 +10,25 @@ const SUPPORTER = preload("res://scenes/supporter.tscn")
 @onready var store = $Store
 @onready var ui = $UI
 @onready var camera = $Camera2D
-@onready var curtain = $Curtain
+@onready var curtain = $Camera2D/Curtain
 @onready var once = true #fuck it sorry
 @onready var poopy = false #sorry again, this is for instore()
 
 func _ready():
+	get_tree().call_group("AudioPlayers", "stop")
 	Globals.ammo = Globals.max_ammo #this is done elsewhere but feels better to do it here imo
+	Globals.player_popped = false #dunno about this one tho lol its just for the camera
+	
 	if Globals.first_round == true:
 		curtain.modulate.a = 1.0
 		launch_seqeunce.frame = 0
 		Globals.first_round = false
 		curtain.modulate.a = 1
-		Globals.state = Globals.states.PRELAUNCH
+		Globals.state = Globals.states.LOAD_IN
 	
 func _physics_process(delta):
 	match Globals.state:
+		Globals.states.LOAD_IN: load_in_state()
 		Globals.states.PRELAUNCH: prelaunch_state()
 		Globals.states.LAUNCH: launch_state()
 		Globals.states.GAMEPLAY: pass
@@ -51,10 +55,13 @@ func in_store():
 		
 	if store.fade_index <= 0 and poopy == true:
 			Globals.state = Globals.states.PRELAUNCH
+			camera.position.y = 418 # dont know why this is necessary tbh
 			launch_seqeunce.frame = 0
 			#launch_seqeunce.play()
-			ui.visible = true
+			
 	
+	if store.fade_index <= 0.5 and poopy == true: #yuval here, i have no idea what poopy is but im keeping it here
+		ui.visible = true
 	pass
 
 func transition_to_store():
@@ -62,13 +69,21 @@ func transition_to_store():
 	Globals.state = Globals.states.STORE
 
 
-func prelaunch_state():
+func load_in_state():
+	ui.visible = false
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	store.modulate.a = 0 # fade out doesn't work in store.gd at certain framerates
 	
 	if curtain.modulate.a < 0.01:
 		curtain.modulate.a = 0
-		ui.visible = true
+		Globals.state = Globals.states.START_AND_PAN
+
+func start_and_pan_state():
+	pass
+
+
+func prelaunch_state():
+	ui.visible = true
 		
 	if Input.is_action_just_pressed("launch"):
 		Globals.state = Globals.states.LAUNCH
@@ -109,7 +124,7 @@ func _on_soap_spawn_timer_timeout():
 	pass
 
 func _on_enemy_spawn_timer_timeout():
-	if Globals.state == Globals.states.STORE: return
+	if Globals.state != Globals.states.GAMEPLAY: return
 	
 	if Globals.ammo > 0:
 		safe_spawn(NEEDLEHEAD, "Enemies", 2000)
@@ -120,12 +135,12 @@ func _on_enemy_spawn_timer_timeout():
 	pass
 
 func _on_dodge_blade_spawn_timer_timeout():
-	if Globals.state == Globals.states.STORE: return
+	if Globals.state != Globals.states.GAMEPLAY: return
 	safe_spawn(DODGE_BLADE, "DodgeBlades", 2000)
 
 
 func _on_supporter_spawn_timer_timeout():
-	if Globals.state == Globals.states.STORE: return
+	if Globals.state != Globals.states.GAMEPLAY: return
 	safe_spawn(SUPPORTER, "Supporters", 2000)
 	
 	

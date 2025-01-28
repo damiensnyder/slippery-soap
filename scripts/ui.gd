@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var AMMOSPRITE = preload("res://assets/bullet1.png")
-@onready var PROGRESSMARKER = preload("res://assets/bubble_placeholder.png")
+@onready var PROGRESSMARKER = preload("res://assets/shrew_icon.png")
 @onready var ammo_origin = $AmmoPlace
 @onready var soap_text = $SoapCounter
 #@onready var current_ammo = Globals.ammo
@@ -18,8 +18,14 @@ func _ready() -> void:
 	for p in Globals.ammo:
 		var new_ammo_sprite = Sprite2D.new()
 		new_ammo_sprite.texture = AMMOSPRITE
-		if p > max_ammo_in_line:
-			new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 40
+		if p > max_ammo_in_line * 3+2:
+			new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 90
+			new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line*3+3)))
+		elif p > max_ammo_in_line * 2+1:
+			new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 60
+			new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line*2+2)))
+		elif p > max_ammo_in_line:
+			new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 30
 			new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line+1)))
 		else:
 			new_ammo_sprite.global_position.y = ammo_origin.global_position.y
@@ -32,7 +38,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var player = get_node_or_null("../Bubble")
-	soap_text.text = "= " + str(Globals.soap)
+	soap_text.text = "" + str(Globals.soap)
 	if Globals.ammo <= 0:
 		for n in (ammo_check - Globals.ammo):
 			if (ammo_array.size() - 1) - (n) >= 0:
@@ -66,8 +72,14 @@ func _physics_process(_delta: float) -> void:
 			for p in Globals.ammo:
 				var new_ammo_sprite = Sprite2D.new()
 				new_ammo_sprite.texture = AMMOSPRITE
-				if p > max_ammo_in_line:
-					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 40
+				if p > max_ammo_in_line * 3+2:
+					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 90
+					new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line*3+3)))
+				elif p > max_ammo_in_line * 2+1:
+					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 60
+					new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line*2+2)))
+				elif p > max_ammo_in_line:
+					new_ammo_sprite.global_position.y = ammo_origin.global_position.y - 30
 					new_ammo_sprite.global_position.x = ammo_origin.global_position.x + (ammo_size * (p-(max_ammo_in_line+1)))
 				else:
 					new_ammo_sprite.global_position.y = ammo_origin.global_position.y
@@ -82,6 +94,7 @@ func _physics_process(_delta: float) -> void:
 	if player != null and player_sprite == null: #progress bar
 		player_sprite = Sprite2D.new()
 		player_sprite.texture = PROGRESSMARKER
+		#player_sprite.modulate.a = 0.625
 		player_sprite.scale = Vector2(0.2, 0.2)
 		player_sprite.global_position = player_marker_start.global_position
 		add_child(player_sprite)
@@ -93,5 +106,5 @@ func _physics_process(_delta: float) -> void:
 		var line_total_dist = progress_line.global_position.y - player_marker_start.global_position.y
 		current_position_percent = (1 - current_position_percent)
 		player_sprite.global_position.y = player_marker_start.global_position.y + (line_total_dist * current_position_percent)
-		print(player_sprite.global_position.y)
+		#print(player_sprite.global_position.y)
 		player_sprite.global_position.y = clamp(player_sprite.global_position.y, progress_line.global_position.y, player_marker_start.global_position.y)

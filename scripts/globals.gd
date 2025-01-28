@@ -2,12 +2,13 @@ extends Node2D
 
 signal shake_screen()
 
-enum states {PRELAUNCH, LAUNCH, GAMEPLAY, STORE, TRANSITION_TO_STORE, WIN, EXIT_TO_MENU}
+enum states {LOAD_IN, START_AND_PAN, PRELAUNCH, LAUNCH, GAMEPLAY, STORE, TRANSITION_TO_STORE, WIN, EXIT_TO_MENU}
 var state
 
 var player_position = Vector2(0,0)
 var max_ammo = 26
 var ammo = max_ammo
+var player_popped = false
 var soap = 0 # INITIAL SOAP
 var first_round = true
 var ammo_upgrade_lvl = 0

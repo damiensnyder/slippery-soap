@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum states {BIRTH, LIFE, DEATH}
 var state = states.BIRTH
-@onready var lerp_speed = 0.05
+@onready var lerp_speed = 0.1 # 0.05 will not reach player
 @onready var player = $"/root/GameManager/Bubble"
 @onready var rng = RandomNumberGenerator.new()
 @onready var timer = $Timer
