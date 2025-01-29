@@ -11,6 +11,7 @@ var ammo = max_ammo
 var player_popped = false
 var soap = 0 # INITIAL SOAP
 var first_round = true
+var won_game = false # this is so you skip cutscenes if you've won
 var ammo_upgrade_lvl = 0
 var ammo_upgrade_tiers = [26, 36, 46, 54, 72, 85, 100, 115, 130, 150] #there r 6 INCLUDING the one u start on
 var shield_upgrade_lvl = 0

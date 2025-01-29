@@ -162,6 +162,7 @@ func shoot(gun_direction: Vector2, own_direction: Vector2, gun_anim, flip: int):
 	elif Globals.gun_upgrade_lvl >= 1:
 		AudioSuite.loud_gunshot_player.play()
 	
+	
 	var enemies = get_tree().get_nodes_in_group("Enemies") + get_tree().get_nodes_in_group("Dodge Blades")
 	var best_angle = 100
 	var average_gun_position = position - 30 * own_direction

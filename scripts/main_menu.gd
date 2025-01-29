@@ -31,8 +31,11 @@ func main_state():
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	intro_scenes.modulate.a = lerp(intro_scenes.modulate.a, 0.0, 0.05)
 	if Input.is_action_just_pressed("next"):
-		state = states.INTROSCENES
-		intro_scenes.frame = 0 #don't think this line is necessary but i dont feel like finding out
+		if Globals.won_game:
+			state = states.OUT
+		else:
+			state = states.INTROSCENES
+			intro_scenes.frame = 0 #don't think this line is necessary but i dont feel like finding out
 	
 	if Input.is_action_just_pressed("previous"): get_tree().quit()
 	

@@ -108,6 +108,7 @@ func exit_to_menu():
 func launch_state():
 	once = true #for fading in shop, i lazy rn
 	poopy = false #ahhh
+	store.modulate.a = 0 # this is to fix a bug that happens in web where store lingers in first round if you press space too quick
 	curtain.modulate.a = lerp(curtain.modulate.a, 0.0, 0.05)
 	if launch_seqeunce.frame == 26:
 		var new_bubble = BUBBLE.instantiate()
